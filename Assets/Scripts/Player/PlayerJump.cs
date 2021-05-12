@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     private PlayerControls playerControls;
-    private Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     private Collider2D col;
-    private bool inJump;
+    [HideInInspector] public bool inJump, inAir;
 
     [SerializeField] private LayerMask ground;
     [SerializeField] private float jumpHeight, fallMultiplier, lowJumpMultiplier;
@@ -38,14 +38,17 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rb.velocity.y < 0)
+        if (rb.velocity.y < 0)
         {
+            inAir = true;
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if(rb.velocity.y > 0 && !inJump)
+        else if (rb.velocity.y > 0 && !inJump)
         {
+            inAir = true;
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+        if (IsGrounded()) { inAir = false;}
     }
 
     void Jump()
@@ -53,6 +56,8 @@ public class PlayerJump : MonoBehaviour
         if (IsGrounded())
         {
             rb.velocity = Vector2.up * jumpHeight;
+            inJump = true;
+            inAir = true;
         }
     }
 

@@ -6,8 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private PlayerControls playerControls;
     [SerializeField] private float speed, brakeValue;
-    private float movementInput;
+    [HideInInspector] public float movementInput;
     private Rigidbody2D rb;
+    [HideInInspector] public float direction;
+    [HideInInspector] public bool turnNow;
 
     private void Awake()
     {
@@ -50,12 +52,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (movementInput != 0)
         {
+            if (direction != movementInput) turnNow = true; else turnNow = false;
             rb.velocity = new Vector2(movementInput * speed * Time.deltaTime, rb.velocity.y);
+            direction = movementInput;
         }
-        else if(movementInput == 0 && rb.velocity.x != 0 && GetComponent<PlayerJump>().IsGrounded())
+        else if (movementInput == 0 && rb.velocity.x != 0 && GetComponent<PlayerJump>().IsGrounded())
         {
             //rb.velocity = new Vector2(-brakeValue * rb.velocity.x, rb.velocity.y);
-            rb.AddForce(-brakeValue * rb.velocity);
+            //rb.AddForce(-brakeValue * rb.velocity);
         }
     }
 }
