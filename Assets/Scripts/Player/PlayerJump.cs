@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     private PlayerControls playerControls;
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private float groundCheckRadius;
     [HideInInspector] public Rigidbody2D rb;
     private Collider2D col;
     [HideInInspector] public bool inJump, inAir;
@@ -48,7 +50,7 @@ public class PlayerJump : MonoBehaviour
             inAir = true;
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
-        if (IsGrounded()) { inAir = false;}
+        if (IsGrounded()) { inAir = false; }
     }
 
     void Jump()
@@ -71,6 +73,14 @@ public class PlayerJump : MonoBehaviour
         bottomRight.x += col.bounds.extents.x;
         bottomRight.y -= col.bounds.extents.y;
 
-        return Physics2D.OverlapArea(topLeft, bottomRight, ground);
+        return Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, ground);
+
+        //return Physics2D.OverlapArea(topLeft, bottomRight, ground);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
     }
 }

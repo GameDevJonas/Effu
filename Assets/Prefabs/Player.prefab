@@ -127,6 +127,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6257257057609349232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5458185976186465689}
+  m_Layer: 0
+  m_Name: GroundCheckPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5458185976186465689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6257257057609349232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.78, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8613541991229263310}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8613541989334290153
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a715a7773758a344b9032ed4853c797b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheckPoint: {fileID: 5458185976186465689}
+  groundCheckRadius: 1.23
   rb: {fileID: 0}
   inJump: 0
   inAir: 0
@@ -841,7 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   callSource: {fileID: 1022911948}
-  callVisual: {fileID: 0}
+  callVisual: {fileID: 270587045360183598, guid: 9a3cd24d2e5412847847901cdf93cdae, type: 3}
   inCall: 0
   respondandts: []
 --- !u!1 &8613541991229263308
@@ -877,6 +909,7 @@ Transform:
   - {fileID: 8613541989335658199}
   - {fileID: 8613541989596265550}
   - {fileID: 8613541989688703057}
+  - {fileID: 5458185976186465689}
   m_Father: {fileID: 8613541991132211910}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -921,8 +954,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 1, g: 0.6148521, b: 0.2688679, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 0.5684194, b: 0.28773582, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
