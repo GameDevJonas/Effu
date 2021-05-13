@@ -7,14 +7,12 @@ public class PlayerAnimations : MonoBehaviour
     private Animator anim;
     private PlayerJump jump;
     private PlayerMovement movement;
-    private bool doJump;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         jump = GetComponent<PlayerJump>();
         movement = GetComponent<PlayerMovement>();
-        doJump = false;
     }
 
     // Start is called before the first frame update
