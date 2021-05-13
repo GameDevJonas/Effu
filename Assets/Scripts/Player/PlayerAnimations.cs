@@ -7,12 +7,16 @@ public class PlayerAnimations : MonoBehaviour
     private Animator anim;
     private PlayerJump jump;
     private PlayerMovement movement;
+    private PlayerGrab grab;
+    private PlayerCall call;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         jump = GetComponent<PlayerJump>();
         movement = GetComponent<PlayerMovement>();
+        grab = GetComponent<PlayerGrab>();
+        call = GetComponent<PlayerCall>();
     }
 
     // Start is called before the first frame update
@@ -43,5 +47,10 @@ public class PlayerAnimations : MonoBehaviour
             anim.SetTrigger("Turn");
             movement.turnNow = false;
         }
+    }
+
+    public void CallAnim()
+    {
+        anim.SetTrigger("Call");
     }
 }
