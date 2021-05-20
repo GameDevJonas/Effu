@@ -56,10 +56,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(movementInput * speed * Time.deltaTime, rb.velocity.y);
             direction = movementInput;
         }
-        else if (movementInput == 0 && rb.velocity.x != 0 && GetComponent<PlayerJump>().IsGrounded())
-        {
-            //rb.velocity = new Vector2(-brakeValue * rb.velocity.x, rb.velocity.y);
-            //rb.AddForce(-brakeValue * rb.velocity);
-        }
+        //else if (movementInput == 0 && rb.velocity.x != 0 && GetComponent<PlayerJump>().IsGrounded())
+        //{
+        //    rb.velocity = new Vector2(-brakeValue * rb.velocity.x, rb.velocity.y);
+        //    rb.AddForce(-brakeValue * rb.velocity);
+        //}
     }
 }

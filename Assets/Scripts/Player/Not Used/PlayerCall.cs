@@ -48,7 +48,6 @@ public class PlayerCall : MonoBehaviour
 
     IEnumerator CallOut()
     {
-        GetComponent<PlayerAnimations>().CallAnim();
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<PlayerJump>().enabled = false;
         GetComponent<PlayerGrab>().enabled = false;

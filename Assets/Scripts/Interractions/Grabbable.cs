@@ -29,12 +29,12 @@ public class Grabbable : MonoBehaviour
     public virtual void GrabMe()
     {
         isGrabbed = true;
-        player.GetComponent<PlayerGrab>().isGrabbing = true;
+        player.GetComponentInChildren<PlayerGrab>().isGrabbing = true;
     }
 
     public virtual void UnGrab()
     {
-        player.GetComponent<PlayerGrab>().isGrabbing = false;
+        player.GetComponentInChildren<PlayerGrab>().isGrabbing = false;
         isGrabbed = false;
     }
 }

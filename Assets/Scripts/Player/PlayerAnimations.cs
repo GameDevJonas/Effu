@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
-    private Animator anim;
-    private PlayerJump jump;
     private PlayerMovement movement;
-    private PlayerGrab grab;
-    private PlayerCall call;
+    public Transform sprite;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        jump = GetComponent<PlayerJump>();
         movement = GetComponent<PlayerMovement>();
-        grab = GetComponent<PlayerGrab>();
-        call = GetComponent<PlayerCall>();
     }
 
     // Start is called before the first frame update
@@ -28,29 +21,10 @@ public class PlayerAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForJumpAnim();
-        CheckForMoveAnim();
-    }
-
-    void CheckForJumpAnim()
-    {
-        anim.SetBool("InJump", jump.inJump);
-        anim.SetFloat("Velocity", jump.rb.velocity.y);
-    }
-
-    void CheckForMoveAnim()
-    {
-        anim.SetBool("Idle", (movement.movementInput != 0) ? false : true);
-        anim.SetInteger("Direction", (int)movement.direction);
-        if (movement.turnNow)
+        
+        if(movement.direction != 0)
         {
-            anim.SetTrigger("Turn");
-            movement.turnNow = false;
+            sprite.localScale = new Vector3(movement.direction, sprite.localScale.y, sprite.localScale.z);
         }
-    }
-
-    public void CallAnim()
-    {
-        anim.SetTrigger("Call");
     }
 }

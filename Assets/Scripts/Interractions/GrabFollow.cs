@@ -27,7 +27,7 @@ public class GrabFollow : Grabbable
     {
         if (isGrabbed)
         {
-            transform.position = player.GetComponent<PlayerGrab>().grabPoint.position;
+            transform.position = player.GetComponentInChildren<PlayerGrab>().grabPoint.position;
         }
     }
 }
