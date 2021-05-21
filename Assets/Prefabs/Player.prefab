@@ -153,12 +153,16 @@ GameObject:
   m_Component:
   - component: {fileID: 8613541991132211910}
   - component: {fileID: 8337478728426520211}
+  - component: {fileID: 2026884431029862979}
   - component: {fileID: 8613541991132211911}
+  - component: {fileID: 350470978382499159}
+  - component: {fileID: 8613541991132211916}
   - component: {fileID: 8613541991132211914}
   - component: {fileID: 8613541991132211913}
-  - component: {fileID: 8613541991132211916}
   - component: {fileID: 8240671567431009956}
-  m_Layer: 0
+  - component: {fileID: 2042407653}
+  - component: {fileID: 2042407661}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -206,6 +210,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!58 &2026884431029862979
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613541991132211909}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!50 &8613541991132211911
 Rigidbody2D:
   serializedVersion: 4
@@ -227,6 +247,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &350470978382499159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613541991132211909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb8853af59b5114cb86f459c1733d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 8613541991132211914}
+  jump: {fileID: 8613541991132211913}
+  grab: {fileID: 8240671567431009956}
+  climb: {fileID: 2042407653}
+  ball: {fileID: 2042407661}
+--- !u!114 &8613541991132211916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613541991132211909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5894ea797bc5d9478d2be2515647c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballSprite: {fileID: 21300000, guid: b73de85dbd504a14eb58018549f47009, type: 3}
+  normalSprite: {fileID: 21300000, guid: 15ed773cee6ea9340b25f102c3395e57, type: 3}
+  pivot: {fileID: 8613541991229263310}
 --- !u!114 &8613541991132211914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +295,6 @@ MonoBehaviour:
   brakeValue: 5
   movementInput: 0
   direction: 0
-  turnNow: 0
 --- !u!114 &8613541991132211913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,22 +315,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  jumpHeight: 6
-  fallMultiplier: 4
+  jumpHeight: 180
+  fallMultiplier: 2
   lowJumpMultiplier: 5
---- !u!114 &8613541991132211916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8613541991132211909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5894ea797bc5d9478d2be2515647c97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 8613541991229263310}
 --- !u!114 &8240671567431009956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +333,35 @@ MonoBehaviour:
   grabPoint: {fileID: 8613541991090852579}
   isGrabbing: 0
   grabObj: {fileID: 0}
+--- !u!114 &2042407653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613541991132211909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0729bdb1cdd8db24bbcaacbfeb33042a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbTime: 2
+  canClimb: 0
+  isClimbing: 0
+  boxCol: {fileID: 8337478728426520211}
+--- !u!114 &2042407661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613541991132211909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3acbea15aa7dac4ca19446a0b086255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBall: 0
 --- !u!1 &8613541991229263308
 GameObject:
   m_ObjectHideFlags: 0

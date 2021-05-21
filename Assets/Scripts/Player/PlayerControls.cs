@@ -49,6 +49,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ball"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce917967-d16a-4bcf-9744-db6ea1bc9616"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -84,17 +92,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8f642518-4b59-46b7-8ff8-26ba4636b4af"",
-                    ""path"": ""<Gamepad>/leftStick/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -161,6 +158,39 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""accc95db-1a56-4472-b60d-c6ea5d28d01e"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controls"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5c420d1-ba3c-4365-bcc9-89e1b92ea201"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controls"",
+                    ""action"": ""Ball"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47e35581-d365-4eac-849c-abecac6897b3"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controls"",
+                    ""action"": ""Ball"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -190,6 +220,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Land_Jump = m_Land.FindAction("Jump", throwIfNotFound: true);
         m_Land_Call = m_Land.FindAction("Call", throwIfNotFound: true);
         m_Land_Grab = m_Land.FindAction("Grab", throwIfNotFound: true);
+        m_Land_Ball = m_Land.FindAction("Ball", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -243,6 +274,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Jump;
     private readonly InputAction m_Land_Call;
     private readonly InputAction m_Land_Grab;
+    private readonly InputAction m_Land_Ball;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -251,6 +283,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Land_Jump;
         public InputAction @Call => m_Wrapper.m_Land_Call;
         public InputAction @Grab => m_Wrapper.m_Land_Grab;
+        public InputAction @Ball => m_Wrapper.m_Land_Ball;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +305,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Grab.started -= m_Wrapper.m_LandActionsCallbackInterface.OnGrab;
                 @Grab.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnGrab;
                 @Grab.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnGrab;
+                @Ball.started -= m_Wrapper.m_LandActionsCallbackInterface.OnBall;
+                @Ball.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnBall;
+                @Ball.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnBall;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -288,6 +324,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Grab.started += instance.OnGrab;
                 @Grab.performed += instance.OnGrab;
                 @Grab.canceled += instance.OnGrab;
+                @Ball.started += instance.OnBall;
+                @Ball.performed += instance.OnBall;
+                @Ball.canceled += instance.OnBall;
             }
         }
     }
@@ -307,5 +346,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCall(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
+        void OnBall(InputAction.CallbackContext context);
     }
 }

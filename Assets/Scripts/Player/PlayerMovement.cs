@@ -8,8 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed, brakeValue;
     [HideInInspector] public float movementInput;
     private Rigidbody2D rb;
-    [HideInInspector] public float direction;
-    [HideInInspector] public bool turnNow;
+    public float direction;
 
     private void Awake()
     {
@@ -45,14 +44,14 @@ public class PlayerMovement : MonoBehaviour
     void GetInputs()
     {
         //Read movement value
-        movementInput = playerControls.Land.Move.ReadValue<float>();
+        float stickRaw = playerControls.Land.Move.ReadValue<float>();
+        movementInput = stickRaw;
     }
 
     void ApplyMovement()
     {
         if (movementInput != 0)
         {
-            if (direction != movementInput) turnNow = true; else turnNow = false;
             rb.velocity = new Vector2(movementInput * speed * Time.deltaTime, rb.velocity.y);
             direction = movementInput;
         }

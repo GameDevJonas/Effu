@@ -11,7 +11,7 @@ public class PlayerJump : MonoBehaviour
     private Collider2D col;
     public bool inJump, inAir;
 
-    [SerializeField] private LayerMask ground;
+    public LayerMask ground;
     [SerializeField] private float jumpHeight, fallMultiplier, lowJumpMultiplier;
 
     private void Awake()

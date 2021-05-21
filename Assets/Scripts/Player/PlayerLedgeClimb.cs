@@ -5,14 +5,15 @@ using UnityEngine;
 public class PlayerLedgeClimb : MonoBehaviour
 {
     private PlayerControls playerControls;
+    private PlayerInputs inputs;
     private Rigidbody2D rb;
     private PlayerMovement movement;
     private PlayerJump jump;
-    private float climbTimer;
     private Vector3 endPos;
 
     [SerializeField] private float climbTime = .5f;
     [HideInInspector] public bool canClimb, isClimbing;
+    [SerializeField] private BoxCollider2D boxCol;
 
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class PlayerLedgeClimb : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
         jump = GetComponent<PlayerJump>();
-        climbTimer = climbTime;
+        inputs = GetComponent<PlayerInputs>();
     }
 
     private void OnEnable()
@@ -55,7 +56,7 @@ public class PlayerLedgeClimb : MonoBehaviour
     public void StartClimb(Vector3 endP)
     {
         endPos = endP;
-        GetComponent<Collider2D>().enabled = false;
+        boxCol.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
         isClimbing = true;
     }
@@ -66,12 +67,14 @@ public class PlayerLedgeClimb : MonoBehaviour
         if (transform.position != endPos)
         {
             transform.position = Vector3.MoveTowards(transform.position, endPos, step);
+            inputs.DisableEnableClimb(false);
         }
         else
         {
             isClimbing = false;
-            GetComponent<Collider2D>().enabled = true;
+            boxCol.enabled = true;
             rb.bodyType = RigidbodyType2D.Dynamic;
+            inputs.DisableEnableClimb(true);
         }
     }
 }

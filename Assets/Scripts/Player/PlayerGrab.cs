@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerGrab : MonoBehaviour
 {
     private PlayerControls playerControls;
+    private PlayerInputs inputs;
     public Transform grabPoint;
     public bool isGrabbing;
     public Grabbable grabObj;
@@ -12,6 +13,7 @@ public class PlayerGrab : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        inputs = GetComponent<PlayerInputs>();
     }
 
     private void OnEnable()
@@ -31,8 +33,12 @@ public class PlayerGrab : MonoBehaviour
 
     void Grab()
     {
-        if (grabObj != null) grabObj.Grab();
-    }  
+        if (grabObj != null)
+        {
+            grabObj.Grab();
+            inputs.DisableEnableGrab(!grabObj.isGrabbed);
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
