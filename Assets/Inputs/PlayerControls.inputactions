@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Grapple",
+                    "type": "PassThrough",
+                    "id": "d65f4eb0-7cb3-42aa-9531-b2800237302d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -176,6 +184,28 @@
                     "processors": "",
                     "groups": "Controls",
                     "action": "Ball",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a35a41de-f1ce-4c67-829e-9beaabd728e2",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controls",
+                    "action": "Grapple",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "552452eb-e70f-4355-8e60-e7365a638fa7",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controls",
+                    "action": "Grapple",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

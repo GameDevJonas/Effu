@@ -31,7 +31,7 @@ public class PlayerGrab : MonoBehaviour
         playerControls.Land.Grab.performed += _ => Grab();
     }
 
-    void Grab()
+    public void Grab()
     {
         if (grabObj != null)
         {

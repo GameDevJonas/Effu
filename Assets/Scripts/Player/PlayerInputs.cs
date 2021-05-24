@@ -9,10 +9,11 @@ public class PlayerInputs : MonoBehaviour
     public PlayerGrab grab;
     public PlayerLedgeClimb climb;
     public PlayerBall ball;
+    public PlayerTongue tongue;
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class PlayerInputs : MonoBehaviour
         grab.enabled = b;
         climb.enabled = b;
         ball.enabled = b;
+        tongue.enabled = b;
     }
 
     public void DisableEnableClimb(bool b)
@@ -36,12 +38,14 @@ public class PlayerInputs : MonoBehaviour
         jump.enabled = b;
         grab.enabled = b;
         ball.enabled = b;
+        tongue.enabled = b;
     }
 
     public void DisableEnableGrab(bool b)
     {
         climb.enabled = b;
         ball.enabled = b;
+        tongue.enabled = b;
     }
 
     public void DisableEnableBall(bool b)
@@ -50,5 +54,15 @@ public class PlayerInputs : MonoBehaviour
         jump.enabled = b;
         grab.enabled = b;
         climb.enabled = b;
+        tongue.enabled = b;
+    }
+
+    public void DisableEnableTongue(bool b)
+    {
+        movement.enabled = b;
+        jump.enabled = b;
+        grab.enabled = b;
+        climb.enabled = b;
+        ball.enabled = b;
     }
 }

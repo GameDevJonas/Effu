@@ -57,6 +57,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Grapple"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d65f4eb0-7cb3-42aa-9531-b2800237302d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -191,6 +199,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Ball"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a35a41de-f1ce-4c67-829e-9beaabd728e2"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controls"",
+                    ""action"": ""Grapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""552452eb-e70f-4355-8e60-e7365a638fa7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controls"",
+                    ""action"": ""Grapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -221,6 +251,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Land_Call = m_Land.FindAction("Call", throwIfNotFound: true);
         m_Land_Grab = m_Land.FindAction("Grab", throwIfNotFound: true);
         m_Land_Ball = m_Land.FindAction("Ball", throwIfNotFound: true);
+        m_Land_Grapple = m_Land.FindAction("Grapple", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -275,6 +306,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Call;
     private readonly InputAction m_Land_Grab;
     private readonly InputAction m_Land_Ball;
+    private readonly InputAction m_Land_Grapple;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -284,6 +316,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Call => m_Wrapper.m_Land_Call;
         public InputAction @Grab => m_Wrapper.m_Land_Grab;
         public InputAction @Ball => m_Wrapper.m_Land_Ball;
+        public InputAction @Grapple => m_Wrapper.m_Land_Grapple;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +341,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Ball.started -= m_Wrapper.m_LandActionsCallbackInterface.OnBall;
                 @Ball.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnBall;
                 @Ball.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnBall;
+                @Grapple.started -= m_Wrapper.m_LandActionsCallbackInterface.OnGrapple;
+                @Grapple.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnGrapple;
+                @Grapple.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnGrapple;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -327,6 +363,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Ball.started += instance.OnBall;
                 @Ball.performed += instance.OnBall;
                 @Ball.canceled += instance.OnBall;
+                @Grapple.started += instance.OnGrapple;
+                @Grapple.performed += instance.OnGrapple;
+                @Grapple.canceled += instance.OnGrapple;
             }
         }
     }
@@ -347,5 +386,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnCall(InputAction.CallbackContext context);
         void OnGrab(InputAction.CallbackContext context);
         void OnBall(InputAction.CallbackContext context);
+        void OnGrapple(InputAction.CallbackContext context);
     }
 }
