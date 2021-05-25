@@ -24,8 +24,15 @@ public class Grapplable : MonoBehaviour
 
     }
 
-    public virtual void GrabMe()
+    public virtual void GrabMe(float distance, float tongueSpeed, LineRenderer line, Transform lineEnd)
     {
+        //EndGrapple();
+    }
 
+    public virtual void EndGrapple()
+    {
+        FindObjectOfType<PlayerTongue>().StopGrapple();
+        if(rb)
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }

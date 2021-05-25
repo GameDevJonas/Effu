@@ -48,7 +48,7 @@ public class PlayerTongue : MonoBehaviour
         }
         else if (!inGrapple && !performed)
         {
-            GrappleStop();
+            GrapplePerform();
         }
         line.SetPosition(0, line.transform.position);
         line.SetPosition(1, lineEnd.transform.position);
@@ -77,19 +77,19 @@ public class PlayerTongue : MonoBehaviour
         }
     }
 
-    private void GrappleStop()
+    private void GrapplePerform()
     {
         StartCoroutine(TonguePerform());
     }
 
     IEnumerator TonguePerform()
     {
+        performed = true;
         marker.SetActive(false);
         if (!target)
         {
             line.enabled = false;
             inputs.DisableEnableTongue(true);
-            performed = true;
             target = null;
             StopCoroutine(TonguePerform());
             yield return null;
@@ -97,20 +97,28 @@ public class PlayerTongue : MonoBehaviour
         float distance = Vector2.Distance(line.transform.position, target.transform.position);
         while (lineEnd.position != target.transform.position)
         {
+            distance = Vector2.Distance(line.transform.position, target.transform.position);
             float step = tongueSpeed * Time.deltaTime;
             lineEnd.position = Vector2.MoveTowards(lineEnd.position, target.transform.position, step);
             yield return new WaitForEndOfFrame();
         }
-        while(distance > .5f)
-        {
-            float step = tongueSpeed * Time.deltaTime;
-            target.transform.position = Vector2.MoveTowards(target.transform.position, line.transform.position, step);
-            yield return new WaitForEndOfFrame();
-        }
+        target.GrabMe(distance, tongueSpeed, line, lineEnd);
+        StopCoroutine(TonguePerform());
+        yield return null;
+        ///
+        //while(distance > .5f)
+        //{
+        //    float step = tongueSpeed * Time.deltaTime;
+        //    target.transform.position = Vector2.MoveTowards(target.transform.position, line.transform.position, step);
+        //    yield return new WaitForEndOfFrame();
+        //}
+    }
+
+    public void StopGrapple()
+    {
         line.enabled = false;
         lineEnd.position = line.transform.position;
         grapplables.Remove(target);
-        target.GrabMe();
         inputs.DisableEnableTongue(true);
         performed = true;
         target = null;

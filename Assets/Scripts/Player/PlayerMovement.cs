@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerControls playerControls;
-    [SerializeField] private float speed, brakeValue;
+    public float speed, brakeValue;
     [HideInInspector] public float movementInput;
     private Rigidbody2D rb;
     public float direction;
