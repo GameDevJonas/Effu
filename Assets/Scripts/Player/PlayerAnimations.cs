@@ -53,10 +53,10 @@ public class PlayerAnimations : MonoBehaviour
         }
 
         //Change rotation of pivot of normal from ground
-        if (jump.IsGrounded() && !ball.isBall)
+        if (jump.IsGrounded() && !ball.isBall && !climb.isClimbing)
         {
             Debug.DrawRay(grab.grabPoint.position, Vector2.down * raycastDistance, Color.red);
-            pivot.transform.rotation = GetNormalFromGround();
+            pivot.rotation = GetNormalFromGround();
             //Quaternion.Euler(pivot.transform.rotation.x, pivot.transform.rotation.y, GetNormalFromGround().eulerAngles.z)
         }
 
@@ -75,7 +75,8 @@ public class PlayerAnimations : MonoBehaviour
         //Change sprite to climb sprite when climbing
         else if (climb.isClimbing)
         {
-            spriteRenderer.sprite = climbSprite;
+            //spriteRenderer.sprite = climbSprite;
+            pivot.rotation = Quaternion.Euler(new Vector3(pivot.rotation.x, pivot.rotation.y, 45 * pivot.localScale.x));
         }
 
         //Return to normal sprite
