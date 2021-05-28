@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Snare : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class Snare : MonoBehaviour
         {
             player = collision.transform;
             joint.enabled = true;
+            player.GetComponent<PlayerInputs>().DisableEnableSnare(false);
+            StartCoroutine(DeathRoutine());
+            GetComponent<Collider2D>().enabled = false;
             //this.enabled = false;
         }
         else if((collision.CompareTag("Grabbable") || collision.CompareTag("Disarm")) && !isDisarmed)
@@ -48,5 +52,18 @@ public class Snare : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().color = Color.black;
             isDisarmed = true;
         }
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        float timer = 0;
+        float deathTime = 5;
+        while(timer <= deathTime)
+        {
+            timer += Time.deltaTime;
+            GameObject.Find("DeathFader").GetComponent<Image>().color += new Color(0, 0, 0, 0.001f);
+            yield return new WaitForEndOfFrame();
+        }
+        FindObjectOfType<MainMenuManager>().LoadScene(1);
     }
 }

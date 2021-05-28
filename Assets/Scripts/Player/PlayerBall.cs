@@ -37,7 +37,6 @@ public class PlayerBall : MonoBehaviour
 
     void BallStart()
     {
-        Debug.Log("IN BALL");
         isBall = true;
         inputs.DisableEnableBall(false);
         rb.constraints = RigidbodyConstraints2D.None;
@@ -47,7 +46,6 @@ public class PlayerBall : MonoBehaviour
 
     void BallQuit()
     {
-        Debug.Log("OUT BALL");
         isBall = false;
         inputs.DisableEnableBall(true);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;

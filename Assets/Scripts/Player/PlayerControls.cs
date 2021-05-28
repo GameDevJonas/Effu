@@ -65,6 +65,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""c11de1cb-cfc3-4296-ba9f-3757183a3772"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -214,11 +222,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""552452eb-e70f-4355-8e60-e7365a638fa7"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controls"",
                     ""action"": ""Grapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""424fd35c-2d42-44e0-a60a-9b488252ef1a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controls"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1fe5ca66-10e4-4611-a731-c9ee03d8dd2b"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controls"",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -252,6 +282,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Land_Grab = m_Land.FindAction("Grab", throwIfNotFound: true);
         m_Land_Ball = m_Land.FindAction("Ball", throwIfNotFound: true);
         m_Land_Grapple = m_Land.FindAction("Grapple", throwIfNotFound: true);
+        m_Land_Menu = m_Land.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -307,6 +338,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Grab;
     private readonly InputAction m_Land_Ball;
     private readonly InputAction m_Land_Grapple;
+    private readonly InputAction m_Land_Menu;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -317,6 +349,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Grab => m_Wrapper.m_Land_Grab;
         public InputAction @Ball => m_Wrapper.m_Land_Ball;
         public InputAction @Grapple => m_Wrapper.m_Land_Grapple;
+        public InputAction @Menu => m_Wrapper.m_Land_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -344,6 +377,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Grapple.started -= m_Wrapper.m_LandActionsCallbackInterface.OnGrapple;
                 @Grapple.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnGrapple;
                 @Grapple.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnGrapple;
+                @Menu.started -= m_Wrapper.m_LandActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -366,6 +402,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Grapple.started += instance.OnGrapple;
                 @Grapple.performed += instance.OnGrapple;
                 @Grapple.canceled += instance.OnGrapple;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -387,5 +426,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnBall(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

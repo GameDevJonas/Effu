@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInputs : MonoBehaviour
 {
+    private PlayerControls playerControls;
+
     public PlayerAnimations anim;
     public PlayerMovement movement;
     public PlayerJump jump;
@@ -12,15 +14,37 @@ public class PlayerInputs : MonoBehaviour
     public PlayerBall ball;
     public PlayerTongue tongue;
 
-    void Start()
-    {
+    private bool isPaused;
 
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+    private void Start()
+    {
+        playerControls.Land.Menu.performed += _ => PauseGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PauseGame()
     {
-
+        FindObjectOfType<MainMenuManager>().HTPMenu();
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
     }
 
     public void DisableEnableAll(bool b)
@@ -67,6 +91,13 @@ public class PlayerInputs : MonoBehaviour
         ball.enabled = b;
     }
 
+    public void DisableEnableSnare(bool b)
+    {
+        grab.enabled = b;
+        climb.enabled = b;
+        tongue.enabled = b;
+    }
+
     public void MoveToPoint(Transform point)
     {
         Debug.Log("Test");
@@ -94,4 +125,5 @@ public class PlayerInputs : MonoBehaviour
         anim.pivot.localScale = new Vector3(movement.direction, anim.pivot.localScale.y, anim.pivot.localScale.z);
         StopCoroutine(GoToPoint(point));
     }
+
 }
