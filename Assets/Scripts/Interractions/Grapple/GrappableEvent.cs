@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class GrappableEvent : Grapplable
 {
     public UnityEvent events;
     private Transform lineEndT;
     private bool inEvent;
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private LogCutsceneInfo cutsceneInfo;
+
+    private void Awake()
     {
-        
+        cutsceneInfo.cutsceneCam = GameObject.FindGameObjectWithTag("CutsceneCam").GetComponent<CinemachineVirtualCamera>();
+        cutsceneInfo.player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputs>();
+    }
+    private void Start()
+    {
+        if (cutsceneInfo.cutsceneCam.gameObject.activeInHierarchy)
+        {
+            cutsceneInfo.cutsceneCam.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -44,4 +55,36 @@ public class GrappableEvent : Grapplable
         EndGrapple();
         GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
+
+    public void NormalMode()
+    {
+        cutsceneInfo.sideWalls.SetActive(true);
+        cutsceneInfo.capCol.enabled = false;
+        cutsceneInfo.boxCol.enabled = true;
+        cutsceneInfo.cutsceneCam.gameObject.SetActive(false);
+        cutsceneInfo.cutsceneCam.Follow = cutsceneInfo.player.transform;
+        cutsceneInfo.player.DisableEnableTongue(true);
+    }
+
+    public void PlayerMove()
+    {
+        cutsceneInfo.player.DisableEnableTongue(false);
+        cutsceneInfo.player.MoveToPoint(cutsceneInfo.playerGoTo);
+        cutsceneInfo.cutsceneCam.gameObject.SetActive(true);
+        cutsceneInfo.cutsceneCam.Follow = cutsceneInfo.cutsceneFocus;
+
+    }
+}
+
+[System.Serializable]
+public class LogCutsceneInfo
+{
+    public GameObject sideWalls;
+    public CapsuleCollider2D capCol;
+    public BoxCollider2D boxCol;
+    [HideInInspector] public CinemachineVirtualCamera cutsceneCam;
+    [HideInInspector] public PlayerInputs player;
+    public Transform playerGoTo;
+    public Transform cutsceneFocus;
+
 }

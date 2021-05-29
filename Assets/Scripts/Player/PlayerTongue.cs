@@ -153,6 +153,11 @@ public class PlayerTongue : MonoBehaviour
         }
     }
 
+    public void SetRange(float range)
+    {
+        maxDistance = range;
+    }
+
     private void OnDrawGizmos()
     {
         if (showRange)
