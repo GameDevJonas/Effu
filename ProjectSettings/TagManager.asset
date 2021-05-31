@@ -8,6 +8,7 @@ TagManager:
   - Snare
   - Disarm
   - CutsceneCam
+  - Pushable
   layers:
   - Default
   - TransparentFX

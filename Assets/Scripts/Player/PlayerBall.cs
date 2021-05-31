@@ -6,7 +6,7 @@ public class PlayerBall : MonoBehaviour
 {
     private PlayerControls playerControls;
     private PlayerInputs inputs;
-    [HideInInspector] public bool isBall;
+    public bool isBall;
     private Rigidbody2D rb;
     private CircleCollider2D colC;
     private BoxCollider2D colB;

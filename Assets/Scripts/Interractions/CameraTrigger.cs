@@ -21,6 +21,12 @@ public class CameraTrigger : MonoBehaviour
     {
 
     }
+
+    public void SetPlayerTongueLength(float range)
+    {
+        FindObjectOfType<PlayerTongue>().SetRange(range);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) onEnterEvent.Invoke();

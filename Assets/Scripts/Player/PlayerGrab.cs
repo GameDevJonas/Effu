@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerGrab : MonoBehaviour
 {
     private PlayerControls playerControls;
+    private PlayerAnimations anim;
     private PlayerInputs inputs;
     public Transform grabPoint;
-    public bool isGrabbing;
+    public bool isGrabbing, doAnim;
     public Grabbable grabObj;
 
     private void Awake()
     {
+        doAnim = false;
         playerControls = new PlayerControls();
+        anim = GetComponent<PlayerAnimations>();
         inputs = GetComponent<PlayerInputs>();
     }
 
@@ -29,6 +32,7 @@ public class PlayerGrab : MonoBehaviour
     void Start()
     {
         playerControls.Land.Grab.performed += _ => Grab();
+        playerControls.Land.Grab.performed += _ => anim.playGrab = true;
     }
 
     public void Grab()

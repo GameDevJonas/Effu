@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float movementInput;
     private Rigidbody2D rb;
     public float direction;
+    public bool isPushing;
 
     private void Awake()
     {
@@ -60,5 +61,14 @@ public class PlayerMovement : MonoBehaviour
         //    rb.velocity = new Vector2(-brakeValue * rb.velocity.x, rb.velocity.y);
         //    rb.AddForce(-brakeValue * rb.velocity);
         //}
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pushable")) isPushing = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pushable")) isPushing = false;
     }
 }
