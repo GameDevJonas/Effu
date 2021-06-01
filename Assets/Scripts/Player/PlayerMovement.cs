@@ -4,37 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerControls playerControls;
+    //private PlayerControls playerControls;
+    private PlayerInputs inputs;
     public float speed, brakeValue;
-    [HideInInspector] public float movementInput;
+    public float movementInput;
     private Rigidbody2D rb;
     public float direction;
-    public bool isPushing;
+    public bool isPushing, disableInputs;
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        inputs = GetComponent<PlayerInputs>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
-    }
-
-    void Start()
-    {
-
     }
 
     void Update()
     {
-        GetInputs();
+        if (!disableInputs) GetInputs();
     }
 
     private void FixedUpdate()
@@ -45,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void GetInputs()
     {
         //Read movement value
-        float stickRaw = playerControls.Land.Move.ReadValue<float>();
+        float stickRaw = inputs.playerControls.Land.Move.ReadValue<float>();
         movementInput = stickRaw;
     }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerLedgeClimb : MonoBehaviour
 {
-    private PlayerControls playerControls;
     private PlayerInputs inputs;
     private Rigidbody2D rb;
     private PlayerMovement movement;
@@ -17,26 +16,14 @@ public class PlayerLedgeClimb : MonoBehaviour
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        inputs = GetComponent<PlayerInputs>();
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
         jump = GetComponent<PlayerJump>();
-        inputs = GetComponent<PlayerInputs>();
     }
-
-    private void OnEnable()
+    private void Start()
     {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
-    }
-
-    void Start()
-    {
-
+        StartClimb(transform.position + Vector3.left * 2);
     }
 
     void Update()
@@ -55,9 +42,11 @@ public class PlayerLedgeClimb : MonoBehaviour
 
     public void StartClimb(Vector3 endP)
     {
+        inputs.DisableEnableClimb(false);
+        movement.movementInput = 0;
+        rb.bodyType = RigidbodyType2D.Static;
         endPos = endP;
         boxCol.enabled = false;
-        rb.bodyType = RigidbodyType2D.Static;
         isClimbing = true;
     }
 
@@ -67,10 +56,10 @@ public class PlayerLedgeClimb : MonoBehaviour
         if (transform.position != endPos)
         {
             transform.position = Vector3.MoveTowards(transform.position, endPos, step);
-            inputs.DisableEnableClimb(false);
         }
         else
         {
+            Debug.Log("Test");
             isClimbing = false;
             boxCol.enabled = true;
             rb.bodyType = RigidbodyType2D.Dynamic;

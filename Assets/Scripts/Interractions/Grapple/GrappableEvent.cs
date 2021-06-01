@@ -63,12 +63,12 @@ public class GrappableEvent : Grapplable
         cutsceneInfo.boxCol.enabled = true;
         cutsceneInfo.cutsceneCam.gameObject.SetActive(false);
         cutsceneInfo.cutsceneCam.Follow = cutsceneInfo.player.transform;
-        cutsceneInfo.player.DisableEnableTongue(true);
+        cutsceneInfo.player.DisableEnableCutscene(true);
     }
 
     public void PlayerMove()
     {
-        cutsceneInfo.player.DisableEnableTongue(false);
+        cutsceneInfo.player.DisableEnableCutscene(false);
         cutsceneInfo.player.MoveToPoint(cutsceneInfo.playerGoTo);
         cutsceneInfo.cutsceneCam.gameObject.SetActive(true);
         cutsceneInfo.cutsceneCam.Follow = cutsceneInfo.cutsceneFocus;

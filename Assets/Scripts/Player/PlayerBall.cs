@@ -4,39 +4,29 @@ using UnityEngine;
 
 public class PlayerBall : MonoBehaviour
 {
-    private PlayerControls playerControls;
     private PlayerInputs inputs;
-    public bool isBall;
+    public bool isBall, disableInputs;
     private Rigidbody2D rb;
     private CircleCollider2D colC;
     private BoxCollider2D colB;
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
         inputs = GetComponent<PlayerInputs>();
         rb = GetComponent<Rigidbody2D>();
         colC = GetComponent<CircleCollider2D>();
-        colB = GetComponent<BoxCollider2D>();
-    }
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
+        colB = GetComponentInChildren<BoxCollider2D>();
     }
 
     private void Start()
     {
-        playerControls.Land.Ball.performed += _ => BallStart();
-        playerControls.Land.Ball.canceled += _ => BallQuit();
+        inputs.playerControls.Land.Ball.performed += _ => BallStart();
+        inputs.playerControls.Land.Ball.canceled += _ => BallQuit();
     }
 
     void BallStart()
     {
+        if (disableInputs) return;
         isBall = true;
         inputs.DisableEnableBall(false);
         rb.constraints = RigidbodyConstraints2D.None;
@@ -46,6 +36,7 @@ public class PlayerBall : MonoBehaviour
 
     void BallQuit()
     {
+        if (disableInputs) return;
         isBall = false;
         inputs.DisableEnableBall(true);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;

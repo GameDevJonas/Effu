@@ -4,51 +4,39 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    private PlayerControls playerControls;
+    private PlayerInputs inputs;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private float groundCheckRadius;
     [HideInInspector] public Rigidbody2D rb;
     private Collider2D col;
-    public bool inJump, inAir;
+    public bool inJump, inAir, disableInputs;
 
     public LayerMask ground;
     [SerializeField] private float jumpHeight, fallMultiplier, lowJumpMultiplier;
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        inputs = GetComponent<PlayerInputs>();
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<Collider2D>();
-    }
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
+        col = GetComponentInChildren<Collider2D>();
     }
 
     void Start()
     {
-        playerControls.Land.Jump.performed += _ => Jump();
-        playerControls.Land.Jump.started += _ => inJump = true;
-        playerControls.Land.Jump.canceled += _ => inJump = false;
+        inputs.playerControls.Land.Jump.performed += _ => Jump();
+        inputs.playerControls.Land.Jump.started += _ => inJump = true;
+        inputs.playerControls.Land.Jump.canceled += _ => inJump = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (disableInputs) return;
+
         if (rb.velocity.y < 0)
         {
             inAir = true;
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        }
-        else if (rb.velocity.y > 0 && !inJump)
-        {
-            //inAir = true;
-            //rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
         if (IsGrounded()) { inAir = false;}
@@ -61,7 +49,7 @@ public class PlayerJump : MonoBehaviour
 
     void Jump()
     {
-        if (IsGrounded())
+        if (IsGrounded() && !disableInputs)
         {
             rb.AddForce(Vector2.up * jumpHeight);
             //rb.velocity = Vector2.up * jumpHeight;

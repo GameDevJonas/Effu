@@ -29,15 +29,15 @@ public class CameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) onEnterEvent.Invoke();
+        if (collision.transform.parent.parent.CompareTag("Player")) onEnterEvent.Invoke();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player")) cam.Priority = 15;
+        if(collision.transform.parent.parent.CompareTag("Player")) cam.Priority = 15;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.transform.parent.parent.CompareTag("Player"))
         {
             onExitEvent.Invoke();
             cam.Priority = 8;

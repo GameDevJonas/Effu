@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInputs : MonoBehaviour
 {
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
 
     public PlayerAnimations anim;
     public PlayerMovement movement;
@@ -49,34 +49,34 @@ public class PlayerInputs : MonoBehaviour
 
     public void DisableEnableAll(bool b)
     {
-        movement.enabled = b;
-        jump.enabled = b;
+        movement.disableInputs = !b;
+        jump.disableInputs = !b;
         grab.enabled = b;
         climb.enabled = b;
-        ball.enabled = b;
+        ball.disableInputs = !b;
         tongue.enabled = b;
     }
 
     public void DisableEnableClimb(bool b)
     {
-        movement.enabled = b;
-        jump.enabled = b;
+        movement.disableInputs = !b;
+        jump.disableInputs = !b;
         grab.enabled = b;
-        ball.enabled = b;
+        ball.disableInputs = !b;
         tongue.enabled = b;
     }
 
     public void DisableEnableGrab(bool b)
     {
         climb.enabled = b;
-        ball.enabled = b;
+        ball.disableInputs = !b;
         tongue.enabled = b;
     }
 
     public void DisableEnableBall(bool b)
     {
-        movement.enabled = b;
-        jump.enabled = b;
+        movement.disableInputs = !b;
+        jump.disableInputs = !b;
         grab.enabled = b;
         climb.enabled = b;
         tongue.enabled = b;
@@ -84,11 +84,11 @@ public class PlayerInputs : MonoBehaviour
 
     public void DisableEnableTongue(bool b)
     {
-        movement.enabled = b;
-        jump.enabled = b;
+        movement.disableInputs = !b;
+        jump.disableInputs = !b;
         grab.enabled = b;
         climb.enabled = b;
-        ball.enabled = b;
+        ball.disableInputs = !b;
     }
 
     public void DisableEnableSnare(bool b)
@@ -98,9 +98,18 @@ public class PlayerInputs : MonoBehaviour
         tongue.enabled = b;
     }
 
+    public void DisableEnableCutscene(bool b)
+    {
+        movement.disableInputs = !b;
+        jump.disableInputs = !b;
+        grab.enabled = b;
+        climb.enabled = b;
+        ball.disableInputs = !b;
+        if (!b) StopCoroutine(GoToPoint(null));
+    }
+
     public void MoveToPoint(Transform point)
     {
-        Debug.Log("Test");
         StartCoroutine(GoToPoint(point));
     }
 
@@ -110,19 +119,15 @@ public class PlayerInputs : MonoBehaviour
         movement.direction = transform.position.x - point.position.x;
         while (distance > .5f)
         {
-            float step = movement.speed / 100 * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, point.position, step);
             distance = Vector2.Distance(transform.position, point.position);
-            movement.direction = point.position.x - transform.position.x;
-            if (movement.direction > 1 || (movement.direction >= 0 && movement.direction <= 1)) movement.direction = 1;
-            else if (movement.direction < -1 || (movement.direction < 0 && movement.direction >= -1)) movement.direction = -1;
-            anim.pivot.localScale = new Vector3(movement.direction, anim.pivot.localScale.y, anim.pivot.localScale.z);
+            //Debug.Log(distance);
+
+            movement.movementInput = Mathf.RoundToInt(Mathf.Clamp((point.position.x - transform.position.x), -1, 1));
             yield return new WaitForEndOfFrame();
         }
-        movement.direction = transform.position.x - point.position.x;
-        if (movement.direction > 1 || (movement.direction >= 0 && movement.direction <= 1)) movement.direction = 1;
-        else if (movement.direction < -1 || (movement.direction < 0 && movement.direction >= -1)) movement.direction = -1;
-        anim.pivot.localScale = new Vector3(movement.direction, anim.pivot.localScale.y, anim.pivot.localScale.z);
+        //movement.movementInput = -movement.direction;
+        yield return new WaitForSeconds(.1f);
+        anim.FlipMe();
         StopCoroutine(GoToPoint(point));
     }
 

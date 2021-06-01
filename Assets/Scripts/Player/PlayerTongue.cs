@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerTongue : MonoBehaviour
 {
-    private PlayerControls playerControls;
     private PlayerInputs inputs;
     private bool inGrapple, performed, inRange;
     [SerializeField] private GameObject marker;
@@ -19,25 +18,14 @@ public class PlayerTongue : MonoBehaviour
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
         inputs = GetComponent<PlayerInputs>();
         performed = true;
         inRange = true;
     }
 
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
-    }
-
     private void Start()
     {
-        playerControls.Land.Grapple.performed += _ => inGrapple = !inGrapple;
+        inputs.playerControls.Land.Grapple.performed += _ => inGrapple = !inGrapple;
     }
 
     private void Update()
@@ -95,7 +83,7 @@ public class PlayerTongue : MonoBehaviour
             yield return null;
         }
         float distance = Vector2.Distance(line.transform.position, target.transform.position);
-        while (lineEnd.position != target.transform.position)
+        while (Vector2.Distance(lineEnd.position, target.transform.position) > .1f)
         {
             distance = Vector2.Distance(line.transform.position, target.transform.position);
             float step = tongueSpeed * Time.deltaTime;

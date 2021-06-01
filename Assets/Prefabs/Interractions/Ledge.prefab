@@ -78,9 +78,9 @@ MonoBehaviour:
   grabPoint: {fileID: 6729299785554440174}
   endPoint: {fileID: 6729299784092689686}
   grabPointRadius: 0.25
-  whatIsPlayer:
+  playerChild:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 128
   playerInRange: 0
 --- !u!1 &6729299785554440175
 GameObject:

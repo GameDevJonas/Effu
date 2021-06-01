@@ -53,10 +53,10 @@ public class PlayerAnimations : MonoBehaviour
         if (movement.direction != 0 && !climb.isClimbing && !ball.isBall)
         {
             float stickRaw = movement.direction;
-            float newDir;
+            float newDir = 1;
             if (stickRaw > 0 && stickRaw <= 1) newDir = 1;
             else if (stickRaw < 0 && stickRaw >= -1) newDir = -1;
-            else newDir = 0;
+            //else newDir = 0;
             pivot.localScale = new Vector3(newDir, pivot.localScale.y, pivot.localScale.z);
         }
 
@@ -100,6 +100,13 @@ public class PlayerAnimations : MonoBehaviour
 
         //Return to normal sprite
         else { SetCharacterState(BayoStates.idle); }
+    }
+
+    //Flips pivot x rotation
+    public void FlipMe()
+    {
+        movement.direction = -movement.direction;
+        //pivot.localScale = new Vector3(-movement.direction, pivot.localScale.y, pivot.localScale.z);
     }
 
     Quaternion GetNormalFromGround()

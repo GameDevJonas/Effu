@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerGrab : MonoBehaviour
 {
-    private PlayerControls playerControls;
-    private PlayerAnimations anim;
     private PlayerInputs inputs;
+    private PlayerAnimations anim;
     public Transform grabPoint;
     public bool isGrabbing, doAnim;
     public Grabbable grabObj;
@@ -14,25 +13,14 @@ public class PlayerGrab : MonoBehaviour
     private void Awake()
     {
         doAnim = false;
-        playerControls = new PlayerControls();
-        anim = GetComponent<PlayerAnimations>();
         inputs = GetComponent<PlayerInputs>();
-    }
-
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
+        anim = GetComponent<PlayerAnimations>();
     }
 
     void Start()
     {
-        playerControls.Land.Grab.performed += _ => Grab();
-        playerControls.Land.Grab.performed += _ => anim.playGrab = true;
+        inputs.playerControls.Land.Grab.performed += _ => Grab();
+        inputs.playerControls.Land.Grab.performed += _ => anim.playGrab = true;
     }
 
     public void Grab()

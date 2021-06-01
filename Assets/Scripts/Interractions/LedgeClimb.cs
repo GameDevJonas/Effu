@@ -6,7 +6,7 @@ public class LedgeClimb : MonoBehaviour
 {
     public Transform grabPoint, endPoint;
     [SerializeField] private float grabPointRadius;
-    [SerializeField] private LayerMask whatIsPlayer;
+    [SerializeField] private LayerMask playerChild;
     public bool playerInRange;
     private PlayerLedgeClimb player;
 
@@ -26,7 +26,8 @@ public class LedgeClimb : MonoBehaviour
 
     bool CheckForPlayer()
     {
-        Collider2D col = Physics2D.OverlapCircle(grabPoint.position, grabPointRadius, whatIsPlayer);
+        Collider2D col = Physics2D.OverlapCircle(grabPoint.position, grabPointRadius, playerChild);
+        
         return col;
     }
 
