@@ -23,7 +23,7 @@ public class PlayerLedgeClimb : MonoBehaviour
     }
     private void Start()
     {
-        StartClimb(transform.position + Vector3.left * 2);
+        //StartClimb(transform.position + Vector3.left * 2);
     }
 
     void Update()
