@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GrabFollow : Grabbable
 {
+    [Range(0, 1)]
+    [SerializeField] private float dropDistance;
+
     public override void Awake()
     {
         base.Awake();
@@ -19,8 +22,12 @@ public class GrabFollow : Grabbable
     public override void UnGrab()
     {
         base.UnGrab();
+        int dir = (int)player.GetComponent<PlayerMovement>().direction;
+        transform.position += Vector3.left * -dir * dropDistance;
         GetComponent<Collider2D>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        //GetComponent<Rigidbody2D>().AddForce(Vector3.left * -dir * dropForce, ForceMode2D.Impulse);
+        //player.GetComponent<PlayerGrab>().grabObj = null;
     }
 
     private void Update()

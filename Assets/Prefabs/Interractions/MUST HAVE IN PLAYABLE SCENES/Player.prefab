@@ -702,6 +702,7 @@ MonoBehaviour:
   movementInput: 0
   direction: 0
   isPushing: 0
+  disableInputs: 0
 --- !u!114 &8613541991132211913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,10 +716,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckPoint: {fileID: 5458185976186465689}
-  groundCheckRadius: 0.47
+  groundCheckRadius: 0.24
   rb: {fileID: 8613541991132211911}
   inJump: 0
   inAir: 0
+  disableInputs: 0
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -770,6 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBall: 0
+  disableInputs: 0
 --- !u!114 &994524185
 MonoBehaviour:
   m_ObjectHideFlags: 0
