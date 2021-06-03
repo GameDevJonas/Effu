@@ -66,6 +66,7 @@ public class PlayerAnimations : MonoBehaviour
             Debug.DrawRay(grab.grabPoint.position, Vector2.down * raycastDistance, Color.red);
             pivot.rotation = GetNormalFromGround();
         }
+        else pivot.rotation = Quaternion.Euler(Vector3.zero);
 
         //Set walking animation
         if (movement.movementInput != 0 && !ball.isBall && !climb.isClimbing && !jump.inJump && !movement.isPushing && !playGrab) { SetCharacterState(BayoStates.walking); playGrab = false; }
@@ -80,6 +81,7 @@ public class PlayerAnimations : MonoBehaviour
         else if (ball.isBall)
         {
             SetCharacterState(BayoStates.ball);
+            pivot.transform.Rotate(Vector3.forward, -GetComponent<Rigidbody2D>().velocity.x);
         }
 
         //Set climb animation
@@ -112,7 +114,14 @@ public class PlayerAnimations : MonoBehaviour
     Quaternion GetNormalFromGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(grab.grabPoint.position, Vector2.down, raycastDistance, jump.ground);
-        return Quaternion.FromToRotation(Vector2.up, hit.normal);
+        if (hit)
+        {
+            Quaternion newRot = Quaternion.FromToRotation(Vector2.up, hit.normal);
+            if (newRot.eulerAngles.z > 30) newRot = Quaternion.Euler(0, 0, 30);
+            else if (newRot.eulerAngles.z < -30) newRot = Quaternion.Euler(0, 0, -30);
+            return newRot;
+        }
+        else return Quaternion.Euler(Vector3.zero);
     }
 
     private void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
@@ -138,7 +147,7 @@ public class PlayerAnimations : MonoBehaviour
         }
         else if (state == BayoStates.ball)
         {
-            SetAnimation(states.ball, false, 1f);
+            SetAnimation(states.ball, false, 2f);
         }
         else if (state == BayoStates.climb)
         {

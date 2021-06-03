@@ -123,6 +123,8 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence(false);
     }
 
+    
+
     //Prepares next sentence
     public void DisplayNextSentence(bool fromButton)
     {

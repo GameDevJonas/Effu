@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerBall : MonoBehaviour
 {
     private PlayerInputs inputs;
+    [SerializeField] private Transform pivot;
     public bool isBall, disableInputs;
     private Rigidbody2D rb;
     private CircleCollider2D colC;
     private BoxCollider2D colB;
-
+    [SerializeField] private GameObject rollCam;
     private void Awake()
     {
         inputs = GetComponent<PlayerInputs>();
@@ -27,8 +28,10 @@ public class PlayerBall : MonoBehaviour
     void BallStart()
     {
         if (disableInputs) return;
+        rollCam.SetActive(true);
         isBall = true;
         inputs.DisableEnableBall(false);
+        rb.velocity = new Vector2(0, rb.velocity.y);
         rb.constraints = RigidbodyConstraints2D.None;
         colC.enabled = true;
         colB.enabled = false;
@@ -37,6 +40,7 @@ public class PlayerBall : MonoBehaviour
     void BallQuit()
     {
         if (disableInputs) return;
+        rollCam.SetActive(false);
         isBall = false;
         inputs.DisableEnableBall(true);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
