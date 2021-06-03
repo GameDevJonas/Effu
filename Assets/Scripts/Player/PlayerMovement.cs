@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!disableInputs) GetInputs();
+        GetInputs();
     }
 
     private void FixedUpdate()
@@ -31,8 +31,15 @@ public class PlayerMovement : MonoBehaviour
     void GetInputs()
     {
         //Read movement value
-        float stickRaw = inputs.playerControls.Land.Move.ReadValue<float>();
-        movementInput = stickRaw;
+        if (!disableInputs)
+        {
+            float stickRaw = inputs.playerControls.Land.Move.ReadValue<float>();
+            movementInput = stickRaw;
+        }
+        else
+        {
+            movementInput = 0;
+        }
     }
 
     void ApplyMovement()

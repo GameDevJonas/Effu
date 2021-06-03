@@ -215,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38139577780742258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.143, y: -0.466, z: 0}
+  m_LocalPosition: {x: 0, y: -0.409, z: 0}
   m_LocalScale: {x: 0.45266578, y: 0.45266578, z: 0.45266578}
   m_Children: []
   m_Father: {fileID: 8613541991229263310}
@@ -771,8 +771,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3acbea15aa7dac4ca19446a0b086255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pivot: {fileID: 8613541991229263310}
   isBall: 0
   disableInputs: 0
+  rollCam: {fileID: 0}
 --- !u!114 &994524185
 MonoBehaviour:
   m_ObjectHideFlags: 0

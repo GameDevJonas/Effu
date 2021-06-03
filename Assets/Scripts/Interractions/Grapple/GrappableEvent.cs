@@ -72,19 +72,50 @@ public class GrappableEvent : Grapplable
         cutsceneInfo.player.MoveToPoint(cutsceneInfo.playerGoTo);
         cutsceneInfo.cutsceneCam.gameObject.SetActive(true);
         cutsceneInfo.cutsceneCam.Follow = cutsceneInfo.cutsceneFocus;
+    }
 
+    public void ThrowBreakLog()
+    {
+        cutsceneInfo.breakLog = GetComponent<Rigidbody2D>();
+        cutsceneInfo.breakLog.bodyType = RigidbodyType2D.Dynamic;
+        cutsceneInfo.breakLog.AddForce(transform.up * cutsceneInfo.breakLogForce);
+        foreach(Rigidbody2D rock in cutsceneInfo.rocks)
+        {
+            rock.bodyType = RigidbodyType2D.Dynamic;
+        }
+    }
+
+    public void FloatLogGoToPoint()
+    {
+        cutsceneInfo.log.turnOn = !cutsceneInfo.log.turnOn;
+    }
+
+    public void FloatNormalMode()
+    {
+        EndGrapple();
+        cutsceneInfo.cutsceneCam.gameObject.SetActive(false);
+        cutsceneInfo.cutsceneCam.Follow = cutsceneInfo.player.transform;
+        cutsceneInfo.player.DisableEnableCutscene(true);
     }
 }
 
 [System.Serializable]
 public class LogCutsceneInfo
 {
+    [Header("Common")]
+    [HideInInspector] public CinemachineVirtualCamera cutsceneCam;
+    [HideInInspector] public PlayerInputs player;
+
+    [Header("Log")]
     public GameObject sideWalls;
     public CapsuleCollider2D capCol;
     public BoxCollider2D boxCol;
-    [HideInInspector] public CinemachineVirtualCamera cutsceneCam;
-    [HideInInspector] public PlayerInputs player;
     public Transform playerGoTo;
     public Transform cutsceneFocus;
 
+    [Header("Rock")]
+    public List<Rigidbody2D> rocks = new List<Rigidbody2D>();
+    public LogGoToPointTest log;
+    public Rigidbody2D breakLog;
+    public float breakLogForce;
 }

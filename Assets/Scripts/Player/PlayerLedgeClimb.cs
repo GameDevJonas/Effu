@@ -53,9 +53,10 @@ public class PlayerLedgeClimb : MonoBehaviour
     void Climbing()
     {
         float step = climbTime * Time.deltaTime;
+        //Debug.Log(step);
         if (transform.position != endPos)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPos, step);
+            transform.position = Vector2.MoveTowards(transform.position, endPos, step);
         }
         else
         {

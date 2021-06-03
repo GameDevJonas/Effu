@@ -11,6 +11,7 @@ public class PlayerBall : MonoBehaviour
     private CircleCollider2D colC;
     private BoxCollider2D colB;
     [SerializeField] private GameObject rollCam;
+    
     private void Awake()
     {
         inputs = GetComponent<PlayerInputs>();
@@ -31,7 +32,7 @@ public class PlayerBall : MonoBehaviour
         rollCam.SetActive(true);
         isBall = true;
         inputs.DisableEnableBall(false);
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        //rb.velocity = new Vector2(0, rb.velocity.y);
         rb.constraints = RigidbodyConstraints2D.None;
         colC.enabled = true;
         colB.enabled = false;
@@ -45,6 +46,7 @@ public class PlayerBall : MonoBehaviour
         inputs.DisableEnableBall(true);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, 0));
+        pivot.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, 0));
         colC.enabled = false;
         colB.enabled = true;
     }

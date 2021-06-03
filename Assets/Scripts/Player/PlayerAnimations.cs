@@ -61,12 +61,12 @@ public class PlayerAnimations : MonoBehaviour
         }
 
         //Change rotation of pivot of normal from ground
-        if (jump.IsGrounded() && !ball.isBall && !climb.isClimbing)
+        /*if (jump.IsGrounded() && !ball.isBall && !climb.isClimbing)
         {
             Debug.DrawRay(grab.grabPoint.position, Vector2.down * raycastDistance, Color.red);
             pivot.rotation = GetNormalFromGround();
         }
-        else pivot.rotation = Quaternion.Euler(Vector3.zero);
+        else if (!ball.isBall) pivot.rotation = Quaternion.Euler(Vector3.zero);*/
 
         //Set walking animation
         if (movement.movementInput != 0 && !ball.isBall && !climb.isClimbing && !jump.inJump && !movement.isPushing && !playGrab) { SetCharacterState(BayoStates.walking); playGrab = false; }
