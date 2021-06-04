@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grabbable : MonoBehaviour
 {
-    [HideInInspector] public bool isGrabbed;
+    public bool isGrabbed;
     [HideInInspector] public GameObject player;
 
     public virtual void Awake()
@@ -34,9 +34,7 @@ public class Grabbable : MonoBehaviour
 
     public virtual void UnGrab()
     {
-        player.GetComponentInChildren<PlayerGrab>().isGrabbing = true;
-        player.GetComponentInChildren<PlayerGrab>().grabObj = null;
-        player.GetComponentInChildren<PlayerGrab>().doAnim = false;
+        player.GetComponentInChildren<PlayerGrab>().UnGrab();
         isGrabbed = false;
     }
 }

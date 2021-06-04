@@ -27,6 +27,12 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void ReloadScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void QuitGame()
     {
         Application.Quit();

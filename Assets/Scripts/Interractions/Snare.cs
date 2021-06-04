@@ -10,47 +10,66 @@ public class Snare : MonoBehaviour
     private Transform player;
     private ParticleSystem destroyParticles;
     private bool isDisarmed = false;
+    private Animator anim;
+
+    [SerializeField] private BoxCollider2D left, right;
+    [SerializeField] private Joint2D jointLock;
+    [SerializeField] private Rigidbody2D trapBody;
+    [SerializeField] private Transform basePoint;
 
     private void Awake()
     {
         joint = GetComponent<SpringJoint2D>();
         line = GetComponentInChildren<LineRenderer>();
         destroyParticles = GetComponentInChildren<ParticleSystem>();
+        anim = GetComponentInChildren<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (joint.enabled)
+        if (jointLock.enabled)
         {
-            line.SetPosition(0, transform.position);
-            line.SetPosition(1, player.position);
+            line.SetPosition(0, trapBody.transform.position);
+            line.SetPosition(1, basePoint.position);
         }
         else
         {
-            line.SetPosition(0, transform.position);
-            line.SetPosition(1, transform.position);
+            line.SetPosition(0, trapBody.transform.position);
+            line.SetPosition(1, basePoint.position);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !isDisarmed)
+        if((collision.CompareTag("Grabbable") || collision.CompareTag("Disarm")) && !isDisarmed)
         {
-            player = collision.transform;
-            joint.enabled = true;
+            //Play disarm anim or sumthn
+            if (collision.GetComponent<Grabbable>().isGrabbed) collision.GetComponent<Grabbable>().UnGrab();
+            collision.GetComponent<Grabbable>().enabled = false;
+            anim.SetTrigger("Activate");
+            trapBody.bodyType = RigidbodyType2D.Dynamic;
+            left.enabled = true;
+            right.enabled = true;
+            jointLock.enabled = true;
+            jointLock.connectedBody = collision.GetComponent<Rigidbody2D>();
+            destroyParticles.Play();
+            isDisarmed = true;
+        }
+        else if ((collision.transform == player || collision.transform.parent.parent == player) && !isDisarmed)
+        {
+            anim.SetTrigger("Activate");
+            //player = collision.transform.parent.parent;
             player.GetComponent<PlayerInputs>().DisableEnableSnare(false);
+            trapBody.bodyType = RigidbodyType2D.Dynamic;
+            left.enabled = true;
+            right.enabled = true;
+            jointLock.enabled = true;
+            jointLock.connectedBody = player.GetComponent<Rigidbody2D>();
             StartCoroutine(DeathRoutine());
             GetComponent<Collider2D>().enabled = false;
             //this.enabled = false;
-        }
-        else if((collision.CompareTag("Grabbable") || collision.CompareTag("Disarm")) && !isDisarmed)
-        {
-            //Play disarm anim or sumthn
-            Destroy(collision.gameObject);
-            destroyParticles.Play();
-            GetComponentInChildren<SpriteRenderer>().color = Color.black;
-            isDisarmed = true;
         }
     }
 
@@ -64,6 +83,6 @@ public class Snare : MonoBehaviour
             GameObject.Find("DeathFader").GetComponent<Image>().color += new Color(0, 0, 0, 0.001f);
             yield return new WaitForEndOfFrame();
         }
-        FindObjectOfType<MainMenuManager>().LoadScene(1);
+        FindObjectOfType<MainMenuManager>().ReloadScene();
     }
 }

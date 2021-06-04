@@ -20,4 +20,4 @@ MonoBehaviour:
     voiceLine: {fileID: 8300000, guid: 55c70ba50309288448ba92006873550d, type: 3}
   - name: Mama
     sentence: Always Bayo.
-    voiceLine: {fileID: 8300000, guid: 3424b1de9a0ce214cba2cddad6f7a31a, type: 3}
+    voiceLine: {fileID: 8300000, guid: 0d66a03868d03e84897739da979a8894, type: 3}

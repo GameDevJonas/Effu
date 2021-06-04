@@ -9,12 +9,14 @@ public class PlayerGrab : MonoBehaviour
     public Transform grabPoint;
     public bool isGrabbing, doAnim;
     public Grabbable grabObj;
+    private PlayerAudio pa;
 
     private void Awake()
     {
         doAnim = false;
         inputs = GetComponent<PlayerInputs>();
         anim = GetComponent<PlayerAnimations>();
+        pa = GetComponent<PlayerAudio>();
     }
 
     void Start()
@@ -27,9 +29,19 @@ public class PlayerGrab : MonoBehaviour
     {
         if (grabObj != null)
         {
+            if(!isGrabbing) inputs.DisableEnableGrab(false);
+            pa.PlayGrab();
             grabObj.Grab();
-            inputs.DisableEnableGrab(!grabObj.isGrabbed);
         }
+    }
+
+    public void UnGrab()
+    {
+        Debug.Log("Ungrab");
+        doAnim = false;
+        grabObj = null;
+        isGrabbing = false;
+        inputs.DisableEnableGrab(true);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

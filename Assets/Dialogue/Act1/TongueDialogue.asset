@@ -18,8 +18,4 @@ MonoBehaviour:
     voiceLine: {fileID: 8300000, guid: 2b946cb88a854d14682311303cb71eb8, type: 3}
   - name: Mama
     sentence: "Lucky for us our tongue is as long as our bodies.\r"
-    voiceLine: {fileID: 8300000, guid: 3424b1de9a0ce214cba2cddad6f7a31a, type: 3}
-  - name: 
-    sentence: Press and release the grapple button to grapple nearby objects to you
-      with your tongue
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 0d66a03868d03e84897739da979a8894, type: 3}

@@ -6,16 +6,24 @@ public class PlayerMovement : MonoBehaviour
 {
     //private PlayerControls playerControls;
     private PlayerInputs inputs;
-    public float speed, brakeValue;
+    public float speed;
     public float movementInput;
     private Rigidbody2D rb;
     public float direction;
     public bool isPushing, disableInputs;
 
+    [Header("Audio variables")]
+    private PlayerAudio pa;
+    [SerializeField] private float stepInterval;
+    private float timer;
+    private PlayerJump jump;
+
     private void Awake()
     {
         inputs = GetComponent<PlayerInputs>();
         rb = GetComponent<Rigidbody2D>();
+        pa = GetComponent<PlayerAudio>();
+        jump = GetComponent<PlayerJump>();
     }
 
     void Update()
@@ -48,12 +56,25 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(movementInput * speed * Time.deltaTime, rb.velocity.y);
             direction = movementInput;
+            if(jump.IsGrounded()) Footsteps();
         }
-        //else if (movementInput == 0 && rb.velocity.x != 0 && GetComponent<PlayerJump>().IsGrounded())
-        //{
-        //    rb.velocity = new Vector2(-brakeValue * rb.velocity.x, rb.velocity.y);
-        //    rb.AddForce(-brakeValue * rb.velocity);
-        //}
+        else if(movementInput == 0)
+        {
+            timer = 0;
+        }
+    }
+
+    void Footsteps()
+    {
+        if(timer >= stepInterval)
+        {
+            pa.PlayFootstep();
+            timer = 0;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)

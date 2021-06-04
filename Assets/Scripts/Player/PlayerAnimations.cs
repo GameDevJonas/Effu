@@ -39,14 +39,13 @@ public class PlayerAnimations : MonoBehaviour
         climb = GetComponent<PlayerLedgeClimb>();
         ball = GetComponent<PlayerBall>();
         //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        currentState = BayoStates.idle;
-        SetCharacterState(currentState);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        currentState = BayoStates.idle;
+        SetCharacterState(currentState);
     }
 
     // Update is called once per frame

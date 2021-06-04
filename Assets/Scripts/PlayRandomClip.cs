@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayRandomClip : MonoBehaviour
+public class PlayRandomClip
 {
-    // Start is called before the first frame update
-    void Start()
+    public static void PlayClip(AudioSource source, AudioClip clip)
     {
-        
+        source.clip = clip;
+        source.Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void PlayClip(AudioSource source, AudioClip clip, bool changePitch, float min, float max)
     {
-        
+        if (changePitch) source.pitch = Random.Range(min, max);
+        source.clip = clip;
+        source.Play();
     }
 }

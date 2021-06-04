@@ -14,11 +14,14 @@ public class PlayerJump : MonoBehaviour
     public LayerMask ground;
     [SerializeField] private float jumpHeight, fallMultiplier, lowJumpMultiplier;
 
+    private PlayerAudio pa;
+
     private void Awake()
     {
         inputs = GetComponent<PlayerInputs>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponentInChildren<Collider2D>();
+        pa = GetComponent<PlayerAudio>();
     }
 
     void Start()
@@ -51,6 +54,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (IsGrounded() && !disableInputs)
         {
+            pa.PlayJump();
             rb.AddForce(Vector2.up * jumpHeight);
             //rb.velocity = Vector2.up * jumpHeight;
             //inJump = true;

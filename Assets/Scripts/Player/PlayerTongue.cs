@@ -16,9 +16,12 @@ public class PlayerTongue : MonoBehaviour
     [SerializeField] private Transform lineEnd;
     [SerializeField] private bool showRange;
 
+    private PlayerAudio pa;
+
     private void Awake()
     {
         inputs = GetComponent<PlayerInputs>();
+        pa = GetComponent<PlayerAudio>();
         performed = true;
         inRange = true;
     }
@@ -67,6 +70,7 @@ public class PlayerTongue : MonoBehaviour
 
     private void GrapplePerform()
     {
+        pa.PlayTongue();
         StartCoroutine(TonguePerform());
     }
 

@@ -14,12 +14,15 @@ public class PlayerLedgeClimb : MonoBehaviour
     public bool canClimb, isClimbing;
     [SerializeField] private BoxCollider2D boxCol;
 
+    private PlayerAudio pa;
+
     private void Awake()
     {
         inputs = GetComponent<PlayerInputs>();
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
         jump = GetComponent<PlayerJump>();
+        pa = GetComponent<PlayerAudio>();
     }
     private void Start()
     {
@@ -48,6 +51,7 @@ public class PlayerLedgeClimb : MonoBehaviour
         endPos = endP;
         boxCol.enabled = false;
         isClimbing = true;
+        pa.PlayClimb();
     }
 
     void Climbing()
