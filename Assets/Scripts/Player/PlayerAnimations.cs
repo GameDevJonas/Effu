@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using Spine.Collections;
+using Spine;
 
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] private SkeletonAnimation anim;
     [SerializeField] private AnimationStates states;
     [SerializeField] private string currentAnimation;
+    public bool isMama;
     public enum BayoStates { idle, walking, pushWalk, jump, pickUp, climb, ball };
     [SerializeField] private BayoStates currentState;
 
@@ -71,7 +74,7 @@ public class PlayerAnimations : MonoBehaviour
         //Set walking animation
         if (movement.movementInput != 0 && !ball.isBall && !climb.isClimbing && !jump.inJump && !movement.isPushing && !playGrab) { SetCharacterState(BayoStates.walking); playGrab = false; }
 
-        else if (playGrab)
+        else if (playGrab && grab.enabled)
         {
             SetCharacterState(BayoStates.pickUp);
             Invoke("ResetGrab", .3f);
@@ -81,7 +84,7 @@ public class PlayerAnimations : MonoBehaviour
         else if (ball.isBall)
         {
             SetCharacterState(BayoStates.ball);
-            pivot.transform.Rotate(Vector3.forward, -GetComponent<Rigidbody2D>().velocity.x);
+            //pivot.transform.Rotate(Vector3.forward, -GetComponent<Rigidbody2D>().velocity.x);
         }
 
         //Set climb animation
@@ -90,7 +93,7 @@ public class PlayerAnimations : MonoBehaviour
             SetCharacterState(BayoStates.climb);
         }
 
-        else if (jump.inJump)
+        else if (jump.inJump && !jump.disableInputs)
         {
             SetCharacterState(BayoStates.jump);
         }
@@ -117,8 +120,8 @@ public class PlayerAnimations : MonoBehaviour
         if (hit)
         {
             Quaternion newRot = Quaternion.FromToRotation(Vector2.up, hit.normal);
-            if (newRot.eulerAngles.z > 30) newRot = Quaternion.Euler(0, 0, 30);
-            else if (newRot.eulerAngles.z < -30) newRot = Quaternion.Euler(0, 0, -30);
+            //if (newRot.eulerAngles.z > 40) newRot = Quaternion.Euler(0, 0, 40);
+            //else if (newRot.eulerAngles.z < -40) newRot = Quaternion.Euler(0, 0, -40);
             return newRot;
         }
         else return Quaternion.Euler(Vector3.zero);
@@ -135,31 +138,38 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (state == BayoStates.idle)
         {
-            SetAnimation(states.idle, true, 1f);
+            if(isMama) SetAnimation(states.mamaStates.idle, true, 1f);
+            else if(!isMama) SetAnimation(states.bayoStates.idle, true, 1f);
         }
         else if (state == BayoStates.walking)
         {
-            SetAnimation(states.walk, true, 1.5f);
+            if (isMama) SetAnimation(states.mamaStates.walk, true, 1.5f);
+            else if (!isMama) SetAnimation(states.bayoStates.walk, true, 1.5f);
         }
         else if (state == BayoStates.jump)
         {
-            SetAnimation(states.jump, false, 1f);
+            if (isMama) SetAnimation(states.mamaStates.jump, false, 1f);
+            else if (!isMama) SetAnimation(states.bayoStates.jump, false, 1f);
         }
         else if (state == BayoStates.ball)
         {
-            SetAnimation(states.ball, false, 2f);
+            if (isMama) SetAnimation(states.mamaStates.ball, false, 2f);
+            else if (!isMama) SetAnimation(states.bayoStates.ball, false, 2f);
         }
         else if (state == BayoStates.climb)
         {
-            SetAnimation(states.climb, false, 1f);
+            if (isMama) SetAnimation(states.mamaStates.climb, false, 1f);
+            else if (!isMama) SetAnimation(states.bayoStates.climb, false, 1f);
         }
         else if (state == BayoStates.pickUp)
         {
-            SetAnimation(states.pickUp, false, 2f);
+            if(isMama) SetAnimation(states.mamaStates.pickUp, false, 2f);
+            else if(!isMama) SetAnimation(states.bayoStates.pickUp, false, 2f);
         }
         else if (state == BayoStates.pushWalk)
         {
-            SetAnimation(states.pushWalk, true, 1.5f);
+            if (isMama) SetAnimation(states.mamaStates.pushWalk, true, 1.5f);
+            else if (!isMama) SetAnimation(states.bayoStates.pushWalk, true, 1.5f);
         }
         currentState = state;
     }
@@ -168,10 +178,25 @@ public class PlayerAnimations : MonoBehaviour
     {
         playGrab = false;
     }
+
+    [ContextMenu("Switch")]
+    public void SwitchToBayo()
+    {
+        isMama = false;
+        anim.skeletonDataAsset = states.bayo;
+        anim.ClearState();
+    }
 }
 
 [System.Serializable]
 public class AnimationStates
+{
+    public PlayerStates mamaStates, bayoStates;
+    public SkeletonDataAsset mama, bayo;
+}
+
+[System.Serializable]
+public class PlayerStates
 {
     public AnimationReferenceAsset idle, walk, pushWalk, jump, pickUp, climb, ball;
 }

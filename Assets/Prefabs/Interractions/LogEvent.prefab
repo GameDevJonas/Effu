@@ -786,13 +786,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   cutsceneInfo:
+    cutsceneCam: {fileID: 0}
+    player: {fileID: 0}
     sideWalls: {fileID: 7338958009533203161}
     capCol: {fileID: 7338958009193148438}
     boxCol: {fileID: 7338958009193148433}
-    cutsceneCam: {fileID: 0}
-    player: {fileID: 0}
     playerGoTo: {fileID: 7338958011064592495}
     cutsceneFocus: {fileID: 7338958010055973856}
+    rocks: []
+    log: {fileID: 0}
+    breakLog: {fileID: 0}
+    breakLogForce: 0
 --- !u!1 &7338958011064592494
 GameObject:
   m_ObjectHideFlags: 0

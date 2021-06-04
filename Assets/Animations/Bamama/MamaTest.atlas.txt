@@ -1,0 +1,41 @@
+
+MamaTest.png
+size: 679,219
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm1
+  rotate: true
+  xy: 586, 100
+  size: 117, 80
+  orig: 117, 80
+  offset: 0, 0
+  index: -1
+Arm2
+  rotate: true
+  xy: 586, 100
+  size: 117, 80
+  orig: 117, 80
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 2, 2
+  size: 582, 215
+  orig: 582, 215
+  offset: 0, 0
+  index: -1
+Leg1
+  rotate: true
+  xy: 586, 2
+  size: 96, 91
+  orig: 96, 91
+  offset: 0, 0
+  index: -1
+Leg2
+  rotate: true
+  xy: 586, 2
+  size: 96, 91
+  orig: 96, 91
+  offset: 0, 0
+  index: -1

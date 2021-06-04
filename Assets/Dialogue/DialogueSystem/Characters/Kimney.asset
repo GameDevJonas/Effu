@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913e25a646005554db59a2674a42cbe8, type: 3}
+  m_Name: Kimney
+  m_EditorClassIdentifier: 
+  characterName: Kimney
+  portraitPrefab: {fileID: 1802276994731873805, guid: add7e19368b1bfe47920e551973acc65, type: 3}
+  normalVoice:
+  - {fileID: 8300000, guid: 191cec801a69460449c79837bdf8a6e3, type: 3}
+  - {fileID: 8300000, guid: 99e72d375ce9b064785aaa31b66af817, type: 3}
+  - {fileID: 8300000, guid: 199d65da8b1ac674aa8ec045fb2d4c50, type: 3}
+  - {fileID: 8300000, guid: c15be334366beb84999d9242c05a1490, type: 3}
+  - {fileID: 8300000, guid: 99a0904778c3b8940b6647535eee49c9, type: 3}
+  - {fileID: 8300000, guid: 92b3ea62a2850724bbea0c9f492e39b8, type: 3}
+  - {fileID: 8300000, guid: 08969f97aa581f54db09953dccf8a792, type: 3}
+  happyVoice:
+  - {fileID: 8300000, guid: 18007efcc6c21ab4bb0365cbf4246450, type: 3}
+  - {fileID: 8300000, guid: 5c0aec0e78d3ff6499a8e03f6daffce3, type: 3}
+  - {fileID: 8300000, guid: 5ea3aa3957253fe4d8992ce09672aaa4, type: 3}
+  - {fileID: 8300000, guid: a1bb067cd525af348b7911363c3407ec, type: 3}
+  - {fileID: 8300000, guid: b6ac7369449e6ea4abd322827664d00b, type: 3}
+  - {fileID: 8300000, guid: df3ec9047116bd74d99d474d9a6a6db3, type: 3}
+  - {fileID: 8300000, guid: 11a2a0b1b85a53b4696bfbb9eab6f993, type: 3}
+  sadVoice:
+  - {fileID: 8300000, guid: 98c2c25e56b10bf4eadd443616fe9637, type: 3}
+  - {fileID: 8300000, guid: 5d20b41738b5bab438801b82b0dbd3d2, type: 3}
+  - {fileID: 8300000, guid: 453f0c6a5690fe64ab6cba568ec1eecd, type: 3}
+  - {fileID: 8300000, guid: eaff6dfc86bc20e4999870a5b18e58b3, type: 3}
+  - {fileID: 8300000, guid: 4b6ef9221b16a4844934dfcdaf11e229, type: 3}
+  - {fileID: 8300000, guid: 8b59c371fb831534f87d3629946d710d, type: 3}
+  - {fileID: 8300000, guid: b52774798b8055c449f62b130a600b99, type: 3}

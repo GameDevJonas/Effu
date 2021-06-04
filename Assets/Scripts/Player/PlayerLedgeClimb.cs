@@ -11,7 +11,7 @@ public class PlayerLedgeClimb : MonoBehaviour
     private Vector3 endPos;
 
     [SerializeField] private float climbTime = .5f;
-    [HideInInspector] public bool canClimb, isClimbing;
+    public bool canClimb, isClimbing;
     [SerializeField] private BoxCollider2D boxCol;
 
     private void Awake()
@@ -54,17 +54,17 @@ public class PlayerLedgeClimb : MonoBehaviour
     {
         float step = climbTime * Time.deltaTime;
         //Debug.Log(step);
-        if (transform.position != endPos)
+        if (transform.position != endPos || Vector2.Distance(transform.position, endPos) > 0.001f)
         {
             transform.position = Vector2.MoveTowards(transform.position, endPos, step);
         }
         else
         {
-            Debug.Log("Test");
             isClimbing = false;
             boxCol.enabled = true;
             rb.bodyType = RigidbodyType2D.Dynamic;
             inputs.DisableEnableClimb(true);
+            Debug.Log("Test");
         }
     }
 }

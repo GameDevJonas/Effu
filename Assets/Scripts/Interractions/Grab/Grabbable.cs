@@ -34,6 +34,8 @@ public class Grabbable : MonoBehaviour
 
     public virtual void UnGrab()
     {
+        player.GetComponentInChildren<PlayerGrab>().isGrabbing = true;
+        player.GetComponentInChildren<PlayerGrab>().grabObj = null;
         player.GetComponentInChildren<PlayerGrab>().doAnim = false;
         isGrabbed = false;
     }

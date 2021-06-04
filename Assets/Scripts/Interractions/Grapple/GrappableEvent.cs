@@ -60,7 +60,8 @@ public class GrappableEvent : Grapplable
     {
         cutsceneInfo.sideWalls.SetActive(true);
         cutsceneInfo.capCol.enabled = false;
-        cutsceneInfo.boxCol.enabled = true;
+        cutsceneInfo.capColT.enabled = false;
+        cutsceneInfo.edgeCol.enabled = true;
         cutsceneInfo.cutsceneCam.gameObject.SetActive(false);
         cutsceneInfo.cutsceneCam.Follow = cutsceneInfo.player.transform;
         cutsceneInfo.player.DisableEnableCutscene(true);
@@ -109,7 +110,8 @@ public class LogCutsceneInfo
     [Header("Log")]
     public GameObject sideWalls;
     public CapsuleCollider2D capCol;
-    public BoxCollider2D boxCol;
+    public CapsuleCollider2D capColT;
+    public EdgeCollider2D edgeCol;
     public Transform playerGoTo;
     public Transform cutsceneFocus;
 
