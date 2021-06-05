@@ -101,7 +101,7 @@ public class DialogueManager : MonoBehaviour
     //Prepares next sentence
     public void DisplayNextSentence(bool fromButton)
     {
-        if(!finishedSentence) voiceSource.Stop();
+        if(finishedSentence) voiceSource.Stop();
         //Checks if this is calles from the game or a script
         if (fromButton)
         {
