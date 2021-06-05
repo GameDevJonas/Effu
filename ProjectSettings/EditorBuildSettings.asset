@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Act 1.unity
     guid: 6ed8bb780fed580498bd8db7ec017bcf
-  - enabled: 0
-    path: Assets/Scenes/MovementPrototyping.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/EndMenu.unity
+    guid: be3948614cde31540bfeff4169fa4d5d
   m_configObjects: {}

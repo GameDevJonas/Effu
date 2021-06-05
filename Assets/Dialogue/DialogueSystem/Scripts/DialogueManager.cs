@@ -222,6 +222,6 @@ public class DialogueManager : MonoBehaviour
     [ContextMenu("Next Sentence")]
     public void NextSentence()
     {
-        if(inDialogue) DisplayNextSentence(true);
+        if(inDialogue && !FindObjectOfType<MenuManager>().isPaused) DisplayNextSentence(true);
     }
 }

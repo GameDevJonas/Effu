@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class EventOnCollision : MonoBehaviour
 {
     [SerializeField] private UnityEvent eventToInvoke;
-
+    [SerializeField] private bool disableAfterInvoked = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +21,15 @@ public class EventOnCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.parent.parent && collision.transform.parent.parent.CompareTag("Player"))
+        if ((collision.gameObject.layer.Equals(7) && collision.transform.parent.parent.CompareTag("Player")) && !FindObjectOfType<PlayerBall>().isBall)
         {
             eventToInvoke.Invoke();
-            this.gameObject.SetActive(false);
+            if(disableAfterInvoked) this.gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Player"))
+        {
+            eventToInvoke.Invoke();
+            if (disableAfterInvoked) this.gameObject.SetActive(false);
         }
     }
 }

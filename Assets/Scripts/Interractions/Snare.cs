@@ -83,6 +83,6 @@ public class Snare : MonoBehaviour
             GameObject.Find("DeathFader").GetComponent<Image>().color += new Color(0, 0, 0, 0.001f);
             yield return new WaitForEndOfFrame();
         }
-        FindObjectOfType<MainMenuManager>().ReloadScene();
+        FindObjectOfType<MenuManager>().ReloadScene();
     }
 }

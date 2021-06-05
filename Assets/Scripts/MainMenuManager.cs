@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject howToPlayMenu;
-    private bool inMenu;
+    public GameObject howToPlayMenu;
+    public bool inMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +38,11 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void HTPMenu()
+    public virtual void HTPMenu()
     {
+        Time.timeScale = 1;
         inMenu = !inMenu;
         howToPlayMenu.SetActive(inMenu);
+        Time.timeScale = 0;
     }
 }

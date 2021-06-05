@@ -38,7 +38,7 @@ public class PlayerBall : MonoBehaviour
         colB.enabled = false;
     }
 
-    void BallQuit()
+    public void BallQuit()
     {
         if (disableInputs) return;
         rollCam.SetActive(false);

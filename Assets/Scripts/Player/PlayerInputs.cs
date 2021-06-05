@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInputs : MonoBehaviour
 {
     public PlayerControls playerControls;
+    private MenuManager menu;
 
     public PlayerAnimations anim;
     public PlayerMovement movement;
@@ -14,11 +15,10 @@ public class PlayerInputs : MonoBehaviour
     public PlayerBall ball;
     public PlayerTongue tongue;
 
-    private bool isPaused;
-
     private void Awake()
     {
         playerControls = new PlayerControls();
+        menu = FindObjectOfType<MenuManager>();
     }
     private void OnEnable()
     {
@@ -35,20 +35,12 @@ public class PlayerInputs : MonoBehaviour
 
     private void PauseGame()
     {
-        FindObjectOfType<MainMenuManager>().HTPMenu();
-        isPaused = !isPaused;
-        if (isPaused)
-        {
-            Time.timeScale = 1;
-        }
-        else
-        {
-            Time.timeScale = 0;
-        }
+        menu.PauseGame();
     }
 
     public void DisableEnableAll(bool b)
     {
+        if (ball.isBall) ball.BallQuit();
         movement.disableInputs = !b;
         jump.disableInputs = !b;
         grab.enabled = b;
@@ -100,6 +92,7 @@ public class PlayerInputs : MonoBehaviour
 
     public void DisableEnableCutscene(bool b)
     {
+        if (ball.isBall) ball.BallQuit();
         movement.disableInputs = !b;
         jump.disableInputs = !b;
         grab.enabled = b;
@@ -115,6 +108,7 @@ public class PlayerInputs : MonoBehaviour
 
     IEnumerator GoToPoint(Transform point)
     {
+        DisableEnableCutscene(false);
         float distance = Vector2.Distance(transform.position, point.position);
         movement.direction = transform.position.x - point.position.x;
         while (distance > .5f)
@@ -128,6 +122,7 @@ public class PlayerInputs : MonoBehaviour
         //movement.movementInput = -movement.direction;
         yield return new WaitForSeconds(.1f);
         anim.FlipMe();
+        DisableEnableCutscene(true);
         StopCoroutine(GoToPoint(point));
     }
 
