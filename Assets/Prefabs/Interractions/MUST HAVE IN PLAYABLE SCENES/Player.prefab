@@ -633,6 +633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6641427851892132146}
   - component: {fileID: 4797333516716648131}
+  - component: {fileID: 2007686909}
   m_Layer: 3
   m_Name: Footsteps
   m_TagString: Untagged
@@ -750,6 +751,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!165 &2007686909
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047288477111953013}
+  m_Enabled: 1
+  m_CutoffFrequency: 1500
+  m_HighpassResonanceQ: 1
 --- !u!1 &2573234376830578384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,13 +1402,28 @@ MonoBehaviour:
     footsteps:
     - {fileID: 8300000, guid: e885484e1bc99fb47a0ac3f6bfa586b1, type: 3}
     jump:
-    - {fileID: 8300000, guid: 51f0c54706b53c14c9c24bbd63bb18a6, type: 3}
+    - {fileID: 8300000, guid: 4cabef93e2f67474dad1d5c5baa3a07a, type: 3}
+    - {fileID: 8300000, guid: e01a2e7cac24b3c41942cd653ebd92fc, type: 3}
+    - {fileID: 8300000, guid: 0d164bc13a79f4849a9fa9e3977cb2c8, type: 3}
+    - {fileID: 8300000, guid: 380928c797376b140a4f5f8937427273, type: 3}
+    - {fileID: 8300000, guid: 6c5af5f8fab069947a995c48516a2676, type: 3}
     grab:
-    - {fileID: 8300000, guid: 532e417ffa3f95747908419a00be3780, type: 3}
+    - {fileID: 8300000, guid: 4ae357e6ee2be93448a77cc3c5b4c810, type: 3}
+    - {fileID: 8300000, guid: b6aca0df196a4664c82c105a134a1aff, type: 3}
+    - {fileID: 8300000, guid: b473fd2814347304895c3b17b66b474f, type: 3}
+    - {fileID: 8300000, guid: 39b017cae9b8cf44ebf5502ee4517f07, type: 3}
+    - {fileID: 8300000, guid: 304ddf104788ac2468f7a7bfa20fb58e, type: 3}
     climb:
-    - {fileID: 8300000, guid: e986056f914f4974896a49527ca80041, type: 3}
+    - {fileID: 8300000, guid: ca7c02ffafe8224428f432a8e666df67, type: 3}
+    - {fileID: 8300000, guid: 6acbd09ab577b064da06431a00eee154, type: 3}
+    - {fileID: 8300000, guid: 0022ec648820ce74d94d439abc446026, type: 3}
+    - {fileID: 8300000, guid: 28b689c89b1a49d44824fcab7343193e, type: 3}
+    - {fileID: 8300000, guid: 1399321c1178db141af52628699879c6, type: 3}
     tongue:
-    - {fileID: 8300000, guid: 3424b1de9a0ce214cba2cddad6f7a31a, type: 3}
+    - {fileID: 8300000, guid: d8fbd6fbd51d56b469881120d7793cf4, type: 3}
+    - {fileID: 8300000, guid: 822c075fd32d11542a9f9d59b5c0245a, type: 3}
+    - {fileID: 8300000, guid: db769cd9de0fa254ab81340769501192, type: 3}
+    - {fileID: 8300000, guid: 4af2c401af3f72842aad559e02c5f021, type: 3}
 --- !u!114 &8613541991132211914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,7 +1441,7 @@ MonoBehaviour:
   direction: 0
   isPushing: 0
   disableInputs: 0
-  stepInterval: 0.4
+  stepInterval: 0.56
 --- !u!114 &8613541991132211913
 MonoBehaviour:
   m_ObjectHideFlags: 0

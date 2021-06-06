@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1353313552591194291}
   - component: {fileID: 1353313552591194290}
+  - component: {fileID: 89352243}
   m_Layer: 0
   m_Name: NormalCam
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353313552591194284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.6, y: -70.84, z: -124.52}
+  m_LocalPosition: {x: -55.7, y: -4.5299997, z: -124.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1353313554207484281}
@@ -70,6 +71,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1353313554207484281}
+--- !u!114 &89352243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353313552591194284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0
+  m_MaxWindowSize: -1
 --- !u!1 &1353313552969956666
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1353313553522261283}
   - component: {fileID: 1353313553522261282}
+  - component: {fileID: 2044291223}
   m_Layer: 0
   m_Name: CutsceneCam
   m_TagString: CutsceneCam
@@ -129,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353313553522261276}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.6, y: -72.31, z: -46.55}
+  m_LocalPosition: {x: -59.7, y: -5.4, z: -46.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1353313554569288529}
@@ -174,6 +191,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1353313554569288529}
+--- !u!114 &2044291223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353313553522261276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0
+  m_MaxWindowSize: -1
 --- !u!1 &1353313553573306140
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353313553859967039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.6, y: -72.31, z: -46.55}
+  m_LocalPosition: {x: -54.899292, y: -5.39065, z: -46.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1353313552969956665}
@@ -347,7 +379,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -401,6 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1353313554129992571}
   - component: {fileID: 1353313554129992570}
+  - component: {fileID: 819366292}
   m_Layer: 0
   m_Name: RollCam
   m_TagString: Untagged
@@ -416,7 +449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353313554129992564}
   m_LocalRotation: {x: -0.00000002980255, y: 1.1641519e-10, z: 3.4694693e-18, w: 1}
-  m_LocalPosition: {x: -1.96, y: -72.31, z: -119.3}
+  m_LocalPosition: {x: -45.42, y: 1.29, z: -119.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1353313553573306147}
@@ -461,6 +494,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1353313553573306147}
+--- !u!114 &819366292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353313554129992564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0
+  m_MaxWindowSize: -1
 --- !u!1 &1353313554207484282
 GameObject:
   m_ObjectHideFlags: 0

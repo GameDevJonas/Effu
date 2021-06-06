@@ -18,7 +18,7 @@ TagManager:
   - UI
   - Ground
   - PlayerChild
-  - 
+  - Grabbable
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1474459959
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
