@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FollowCameraHorizontally : MonoBehaviour
 {
-    private Transform mainCam;
+    private Transform player;
 
     private void Awake()
     {
-        mainCam = Camera.main.transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void LateUpdate()
@@ -18,6 +18,6 @@ public class FollowCameraHorizontally : MonoBehaviour
 
     private Vector2 FollowCamera()
     {
-        return new Vector2(mainCam.position.x, transform.position.y);
+        return new Vector2(player.position.x, transform.position.y);
     }
 }
