@@ -11,7 +11,7 @@ public class FollowCameraHorizontally : MonoBehaviour
         mainCam = Camera.main.transform;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         transform.position = FollowCamera();
     }
