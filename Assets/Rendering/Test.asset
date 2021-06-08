@@ -36,7 +36,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
@@ -172,7 +172,7 @@ MonoBehaviour:
     max: 32
   focalLength:
     m_OverrideState: 1
-    m_Value: 75
+    m_Value: 49
     min: 1
     max: 300
   bladeCount:
@@ -210,7 +210,7 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.1
+    m_Value: 0.07
     min: 0
   scatter:
     m_OverrideState: 1

@@ -58,7 +58,7 @@ public class PlayerLedgeClimb : MonoBehaviour
     {
         float step = climbTime * Time.deltaTime;
         //Debug.Log(step);
-        if (transform.position != endPos || Vector2.Distance(transform.position, endPos) > 0.001f)
+        if (Vector2.Distance(transform.position, endPos) > 0.001f)
         {
             transform.position = Vector2.MoveTowards(transform.position, endPos, step);
         }
