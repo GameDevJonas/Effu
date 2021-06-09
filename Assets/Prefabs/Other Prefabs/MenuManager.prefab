@@ -1971,6 +1971,7 @@ MonoBehaviour:
   inTag: 0
   finishedSentence: 0
   voiceSource: {fileID: 6064851535383698683}
+  timeOffset: 1
 --- !u!95 &6064851536273665371
 Animator:
   serializedVersion: 3

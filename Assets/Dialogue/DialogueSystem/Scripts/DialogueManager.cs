@@ -47,6 +47,9 @@ public class DialogueManager : MonoBehaviour
     //Which trigger triggered the dialogue
     private DialogueTrigger trigger;
 
+    [SerializeField] private float timeOffset;
+    private float nextLineTime, timer;
+
     private void Awake()
     {
         names = new Queue<string>();
@@ -54,18 +57,19 @@ public class DialogueManager : MonoBehaviour
         voiceLines = new Queue<AudioClip>();
         textSpeed = normalSpeed;
         inputs = FindObjectOfType<PlayerInputs>();
+        timer = 0;
     }
 
     private void Start()
     {
-        inputs.playerControls.Land.Jump.performed += _ => NextSentence();
+        //inputs.playerControls.Land.Jump.performed += _ => CheckForNextSentence();
     }
 
     //Starts dialogue
     public void StartDialogue(Dialogue dialogue, DialogueTrigger dTrigger)
     {
         if (currentPlatform == Platform.mobile) VibrationMethods.ShortLowVibration();
-        inputs.DisableEnableAll(false);
+        //inputs.DisableEnableAll(false);
         inDialogue = true;
         trigger = dTrigger;
 
@@ -101,7 +105,7 @@ public class DialogueManager : MonoBehaviour
     //Prepares next sentence
     public void DisplayNextSentence(bool fromButton)
     {
-        if(finishedSentence) voiceSource.Stop();
+        if (finishedSentence) voiceSource.Stop();
         //Checks if this is calles from the game or a script
         if (fromButton)
         {
@@ -136,6 +140,7 @@ public class DialogueManager : MonoBehaviour
         currentSentence = sentences.Dequeue();
         voiceSource.clip = voiceLines.Dequeue();
         voiceSource.Play();
+        nextLineTime = voiceSource.clip.length + timeOffset;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(currentSentence));
     }
@@ -211,7 +216,8 @@ public class DialogueManager : MonoBehaviour
         inDialogue = false;
         //If trigger has an event after the dialogue is finished, invoke this
         trigger.finishedDialogueEvents.Invoke();
-        Invoke("EnableInputs", .2f);
+        timer = 0;
+        //Invoke("EnableInputs", .2f);
     }
 
     private void EnableInputs()
@@ -219,9 +225,22 @@ public class DialogueManager : MonoBehaviour
         inputs.DisableEnableAll(true);
     }
 
-    [ContextMenu("Next Sentence")]
-    public void NextSentence()
+    private void Update()
     {
-        if(inDialogue && !FindObjectOfType<MenuManager>().isPaused) DisplayNextSentence(true);
+        if (inDialogue && !FindObjectOfType<MenuManager>().isPaused) CheckForNextSentence();
+    }
+
+    [ContextMenu("Next Sentence")]
+    public void CheckForNextSentence()
+    {
+        if (timer >= nextLineTime)
+        {
+            DisplayNextSentence(true);
+            timer = 0;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+        }
     }
 }
