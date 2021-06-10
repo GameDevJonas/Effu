@@ -1,0 +1,118 @@
+
+Bayo.png
+size: 1924,1297
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Bayo
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+BayoArm1
+  rotate: false
+  xy: 131, 1253
+  size: 79, 42
+  orig: 79, 42
+  offset: 0, 0
+  index: -1
+BayoBody
+  rotate: false
+  xy: 836, 1097
+  size: 349, 198
+  orig: 349, 198
+  offset: 0, 0
+  index: -1
+BayoEyeBlink
+  rotate: false
+  xy: 2, 1284
+  size: 17, 11
+  orig: 17, 11
+  offset: 0, 0
+  index: -1
+BayoEyeClosed
+  rotate: false
+  xy: 21, 1284
+  size: 17, 11
+  orig: 17, 11
+  offset: 0, 0
+  index: -1
+BayoEyeOpen
+  rotate: false
+  xy: 63, 1278
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+BayoLeg1
+  rotate: false
+  xy: 212, 1236
+  size: 68, 59
+  orig: 68, 59
+  offset: 0, 0
+  index: -1
+MamaArm1
+  rotate: false
+  xy: 410, 1221
+  size: 117, 74
+  orig: 117, 74
+  offset: 0, 0
+  index: -1
+MamaArm1push
+  rotate: false
+  xy: 282, 1222
+  size: 126, 73
+  orig: 126, 73
+  offset: 0, 0
+  index: -1
+MamaArm2
+  rotate: false
+  xy: 529, 1221
+  size: 117, 74
+  orig: 117, 74
+  offset: 0, 0
+  index: -1
+MamaBody
+  rotate: false
+  xy: 1187, 1084
+  size: 592, 211
+  orig: 592, 211
+  offset: 0, 0
+  index: -1
+MamaEyeBlink
+  rotate: false
+  xy: 82, 1278
+  size: 22, 17
+  orig: 22, 17
+  offset: 0, 0
+  index: -1
+MamaEyeClosed
+  rotate: false
+  xy: 40, 1281
+  size: 21, 14
+  orig: 21, 14
+  offset: 0, 0
+  index: -1
+MamaEyeOpen
+  rotate: false
+  xy: 106, 1276
+  size: 23, 19
+  orig: 23, 19
+  offset: 0, 0
+  index: -1
+MamaLeg1
+  rotate: false
+  xy: 648, 1207
+  size: 92, 88
+  orig: 92, 88
+  offset: 0, 0
+  index: -1
+MamaLeg2
+  rotate: false
+  xy: 742, 1207
+  size: 92, 88
+  orig: 92, 88
+  offset: 0, 0
+  index: -1

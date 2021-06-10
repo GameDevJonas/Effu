@@ -11,7 +11,7 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private AnimationStates states;
     [SerializeField] private string currentAnimation;
     public bool isMama;
-    public enum BayoStates { idle, walking, pushWalk, jump, pickUp, climb, ball };
+    public enum BayoStates { idle, walking, pushWalk, jump, pickUp, climb, ball, death};
     [SerializeField] private BayoStates currentState;
 
     [SerializeField] private float raycastDistance;
@@ -30,6 +30,8 @@ public class PlayerAnimations : MonoBehaviour
     //[SerializeField] private Sprite ballSprite, normalSprite;
 
     public Transform pivot;
+
+    public bool mamaDeath;
 
     private void Awake()
     {
@@ -103,7 +105,11 @@ public class PlayerAnimations : MonoBehaviour
         }
 
         //Return to normal sprite
-        else { SetCharacterState(BayoStates.idle); }
+        else if(!mamaDeath) { SetCharacterState(BayoStates.idle); }
+        else
+        {
+            SetCharacterState(BayoStates.death);
+        }
     }
 
     //Flips pivot x rotation
@@ -131,6 +137,11 @@ public class PlayerAnimations : MonoBehaviour
         if (currentAnimation == animation.name) return;
         anim.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
         currentAnimation = animation.name;
+    }
+
+    public void PlayMamaThrow()
+    {
+        mamaDeath = true;
     }
 
     private void SetCharacterState(BayoStates state)
@@ -170,6 +181,11 @@ public class PlayerAnimations : MonoBehaviour
             if (isMama) SetAnimation(states.mamaStates.pushWalk, true, 1.5f);
             else if (!isMama) SetAnimation(states.bayoStates.pushWalk, true, 1.5f);
         }
+        else if(state == BayoStates.death)
+        {
+            if (isMama) SetAnimation(states.mamaStates.death, false, 1f);
+            else if (!isMama) SetAnimation(states.bayoStates.death, false, 1f);
+        }
         currentState = state;
     }
 
@@ -197,5 +213,5 @@ public class AnimationStates
 [System.Serializable]
 public class PlayerStates
 {
-    public AnimationReferenceAsset idle, walk, pushWalk, jump, pickUp, climb, ball;
+    public AnimationReferenceAsset idle, walk, pushWalk, jump, pickUp, climb, ball, death;
 }

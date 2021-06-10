@@ -284,14 +284,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 497d0ba5d7ffcc64395ee09b4115b6aa, type: 2}
-  - {fileID: 2100000, guid: e56e26659f41579429d88a4ac4de1262, type: 2}
-  - {fileID: 2100000, guid: 497d0ba5d7ffcc64395ee09b4115b6aa, type: 2}
-  - {fileID: 2100000, guid: e56e26659f41579429d88a4ac4de1262, type: 2}
-  - {fileID: 2100000, guid: 497d0ba5d7ffcc64395ee09b4115b6aa, type: 2}
-  - {fileID: 2100000, guid: 0cd630b9f448c934d8dc4977d76554c2, type: 2}
-  - {fileID: 2100000, guid: ef739aab56f084348ae391c6862a4e1a, type: 2}
-  - {fileID: 2100000, guid: 0cd630b9f448c934d8dc4977d76554c2, type: 2}
+  - {fileID: 2100000, guid: c67f03b0bb05b5c46b64ac15456e794b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -325,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 72abff53a391b144882a19b233c77801, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 469053c2e5788e74e92705858d1eea10, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -1285,7 +1278,7 @@ Transform:
   m_GameObject: {fileID: 8613541991132211909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8613541991229263310}
   - {fileID: 2525558422352886890}
@@ -1364,12 +1357,12 @@ MonoBehaviour:
   anim: {fileID: 81742567337867349}
   states:
     mamaStates:
-      idle: {fileID: 11400000, guid: 6a49113cf37091147927df8d30f684f7, type: 2}
-      walk: {fileID: 11400000, guid: 64ad45e6eec46a347ae2a872b6976418, type: 2}
-      pushWalk: {fileID: 11400000, guid: eea99f0aea5ace64b9aa968733c65af1, type: 2}
-      jump: {fileID: 11400000, guid: e841f62a19387cc42ae7a722cfa126ac, type: 2}
-      pickUp: {fileID: 11400000, guid: 915b0449eae74b34d934f50232b430b9, type: 2}
-      climb: {fileID: 11400000, guid: 3641d814c2ab38847932f86a6485ea2f, type: 2}
+      idle: {fileID: 11400000, guid: 31baa2f8608a2484e8ff370a0db2904d, type: 2}
+      walk: {fileID: 11400000, guid: 76a7b21bf9223f549af3baf0b2d9348c, type: 2}
+      pushWalk: {fileID: 11400000, guid: d23678f4d98dc4041abcb1a34ffd61f8, type: 2}
+      jump: {fileID: 11400000, guid: 0a5b81bf2b0b58a4cbbf79f45edbf84c, type: 2}
+      pickUp: {fileID: 11400000, guid: d23678f4d98dc4041abcb1a34ffd61f8, type: 2}
+      climb: {fileID: 11400000, guid: 3094ca5e4846aa643a948c330e6301cf, type: 2}
       ball: {fileID: 11400000, guid: b49656c805a2b5240a4fa528372a757f, type: 2}
     bayoStates:
       idle: {fileID: 11400000, guid: 524049a98314b0b4695ff2dc39ffc3c0, type: 2}
@@ -1382,7 +1375,7 @@ MonoBehaviour:
     mama: {fileID: 11400000, guid: dd1b8a70ce32bae4baf18158caee6698, type: 2}
     bayo: {fileID: 11400000, guid: 72abff53a391b144882a19b233c77801, type: 2}
   currentAnimation: 
-  isMama: 0
+  isMama: 1
   currentState: 0
   raycastDistance: 1
   playGrab: 0
@@ -1512,7 +1505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8613541991132211909}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3acbea15aa7dac4ca19446a0b086255, type: 3}
   m_Name: 
@@ -1539,7 +1532,7 @@ MonoBehaviour:
   tongueSpeed: 10
   line: {fileID: 564378967}
   lineEnd: {fileID: 360753512}
-  showRange: 1
+  showRange: 0
 --- !u!1 &8613541991229263308
 GameObject:
   m_ObjectHideFlags: 0
