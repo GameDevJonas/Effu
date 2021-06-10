@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - name: Bayo
-    sentence: Whoa, The savannah is relly big
+    sentence: Whoa, The savannah is really big
     voiceLine: {fileID: 8300000, guid: dc2e64c358329f64ea5dbaec799a4962, type: 3}
