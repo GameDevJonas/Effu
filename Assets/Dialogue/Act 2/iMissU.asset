@@ -10,18 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f801988fb8ca52d4bbf0086aa0a06f9d, type: 3}
-  m_Name: WhereDialogue2
+  m_Name: iMissU
   m_EditorClassIdentifier: 
   dialogue:
   - name: Bayo
-    sentence: 
-    voiceLine: {fileID: 0}
-  - name: 
-    sentence: 
-    voiceLine: {fileID: 0}
-  - name: 
-    sentence: 
-    voiceLine: {fileID: 0}
-  - name: 
-    sentence: 
-    voiceLine: {fileID: 0}
+    sentence: I miss you mama.
+    voiceLine: {fileID: 8300000, guid: 9f9c56e6d593151418968fc6dd5ccbc4, type: 3}
