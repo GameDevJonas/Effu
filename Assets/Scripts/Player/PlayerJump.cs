@@ -14,7 +14,16 @@ public class PlayerJump : MonoBehaviour
     public LayerMask ground;
     [SerializeField] private float jumpHeight, fallMultiplier, lowJumpMultiplier;
 
+    private PlayerLedgeClimb climb;
+
     private PlayerAudio pa;
+
+    [Range(0, 100)]
+    [SerializeField] private float probability;
+
+    [SerializeField] private float minDistanceToLedge;
+    private List<Transform> inRanges = new List<Transform>();
+    [SerializeField] private bool showMinDistance;
 
     private void Awake()
     {
@@ -22,6 +31,11 @@ public class PlayerJump : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponentInChildren<Collider2D>();
         pa = GetComponent<PlayerAudio>();
+        climb = GetComponent<PlayerLedgeClimb>();
+        foreach (LedgeClimb ledge in FindObjectsOfType<LedgeClimb>())
+        {
+            inRanges.Add(ledge.transform);
+        }
     }
 
     void Start()
@@ -42,7 +56,7 @@ public class PlayerJump : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
 
-        if (IsGrounded()) { inAir = false;}
+        if (IsGrounded()) { inAir = false; }
 
         //if (inAir && inJump)
         //{
@@ -54,11 +68,16 @@ public class PlayerJump : MonoBehaviour
     {
         if (IsGrounded() && !disableInputs)
         {
-            pa.PlayJump();
             rb.AddForce(Vector2.up * jumpHeight);
             //rb.velocity = Vector2.up * jumpHeight;
             //inJump = true;
             inAir = true;
+
+            foreach (Transform ledge in inRanges)
+            {
+                if (Vector2.Distance(ledge.position, transform.position) < minDistanceToLedge) return;
+            }
+            pa.PlayJump(probability);
         }
     }
 
@@ -81,5 +100,11 @@ public class PlayerJump : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
+
+        if (showMinDistance)
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawWireSphere(transform.position, minDistanceToLedge);
+        }
     }
 }

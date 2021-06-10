@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerTongue : MonoBehaviour
 {
     private PlayerInputs inputs;
-    private bool inGrapple, performed, inRange;
+    [HideInInspector] public bool inGrapple, performed, inRange, tongueAnim;
     [SerializeField] private GameObject marker;
     private List<Grapplable> grapplables = new List<Grapplable>();
     private Queue<Grapplable> grapplablesQueue = new Queue<Grapplable>();
@@ -17,6 +17,8 @@ public class PlayerTongue : MonoBehaviour
     [SerializeField] private bool showRange;
 
     private PlayerAudio pa;
+    [Range(0, 100)]
+    [SerializeField] private float probability;
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class PlayerTongue : MonoBehaviour
         pa = GetComponent<PlayerAudio>();
         performed = true;
         inRange = true;
+        tongueAnim = false;
     }
 
     private void Start()
@@ -48,6 +51,7 @@ public class PlayerTongue : MonoBehaviour
     private void GrappleStart()
     {
         line.enabled = true;
+        tongueAnim = true;
         line.SetPosition(0, line.transform.position);
         line.SetPosition(1, lineEnd.transform.position);
         performed = false;
@@ -70,7 +74,7 @@ public class PlayerTongue : MonoBehaviour
 
     private void GrapplePerform()
     {
-        pa.PlayTongue();
+        pa.PlayTongue(probability);
         StartCoroutine(TonguePerform());
     }
 
@@ -84,6 +88,7 @@ public class PlayerTongue : MonoBehaviour
             inputs.DisableEnableTongue(true);
             target = null;
             StopCoroutine(TonguePerform());
+            tongueAnim = false;
             yield return null;
         }
         float distance = Vector2.Distance(line.transform.position, target.transform.position);
@@ -95,6 +100,7 @@ public class PlayerTongue : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         target.GrabMe(distance, tongueSpeed, line, lineEnd);
+        tongueAnim = false;
         StopCoroutine(TonguePerform());
         yield return null;
         ///

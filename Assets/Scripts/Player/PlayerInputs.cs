@@ -126,4 +126,9 @@ public class PlayerInputs : MonoBehaviour
         StopCoroutine(GoToPoint(point));
     }
 
+    private void Update()
+    {
+        if (anim.isMama) ball.enabled = false;
+    }
+
 }

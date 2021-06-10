@@ -11,7 +11,7 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private AnimationStates states;
     [SerializeField] private string currentAnimation;
     public bool isMama;
-    public enum BayoStates { idle, walking, pushWalk, jump, pickUp, climb, ball, death};
+    public enum BayoStates { idle, mangoIdle, walking, mangoWalk, pushWalk, jump, pickUp, climb, ball, tongue, death };
     [SerializeField] private BayoStates currentState;
 
     [SerializeField] private float raycastDistance;
@@ -29,6 +29,8 @@ public class PlayerAnimations : MonoBehaviour
     private PlayerBall ball;
     //[SerializeField] private Sprite ballSprite, normalSprite;
 
+    private PlayerTongue tongue;
+
     public Transform pivot;
 
     public bool mamaDeath;
@@ -40,6 +42,7 @@ public class PlayerAnimations : MonoBehaviour
         grab = GetComponent<PlayerGrab>();
         climb = GetComponent<PlayerLedgeClimb>();
         ball = GetComponent<PlayerBall>();
+        tongue = GetComponent<PlayerTongue>();
         //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -75,6 +78,11 @@ public class PlayerAnimations : MonoBehaviour
         //Set walking animation
         if (movement.movementInput != 0 && !ball.isBall && !climb.isClimbing && !jump.inJump && !movement.isPushing && !playGrab) { SetCharacterState(BayoStates.walking); playGrab = false; }
 
+        else if (tongue.tongueAnim)
+        {
+            SetCharacterState(BayoStates.tongue);
+        }
+
         else if (playGrab && grab.enabled)
         {
             SetCharacterState(BayoStates.pickUp);
@@ -105,7 +113,7 @@ public class PlayerAnimations : MonoBehaviour
         }
 
         //Return to normal sprite
-        else if(!mamaDeath) { SetCharacterState(BayoStates.idle); }
+        else if (!mamaDeath) { SetCharacterState(BayoStates.idle); }
         else
         {
             SetCharacterState(BayoStates.death);
@@ -148,14 +156,40 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (state == BayoStates.idle)
         {
-            if(isMama) SetAnimation(states.mamaStates.idle, true, 1f);
-            else if(!isMama) SetAnimation(states.bayoStates.idle, true, 1f);
+            if (!grab.isGrabbing)
+            {
+                if (isMama) SetAnimation(states.mamaStates.idle, true, 1f);
+                else if (!isMama) SetAnimation(states.bayoStates.idle, true, 1f);
+            }
+            else
+            {
+                if (isMama) SetAnimation(states.mamaStates.mangoIdle, true, 1f);
+                else if (!isMama) SetAnimation(states.bayoStates.mangoIdle, true, 1f);
+            }
         }
+        /*else if (state == BayoStates.mangoIdle)
+        {
+            if (isMama) SetAnimation(states.mamaStates.mangoIdle, true, 1f);
+            else if (!isMama) SetAnimation(states.bayoStates.mangoIdle, true, 1f);
+        }*/
         else if (state == BayoStates.walking)
         {
-            if (isMama) SetAnimation(states.mamaStates.walk, true, 1.5f);
-            else if (!isMama) SetAnimation(states.bayoStates.walk, true, 1.5f);
+            if (!grab.isGrabbing)
+            {
+                if (isMama) SetAnimation(states.mamaStates.walk, true, 1f);
+                else if (!isMama) SetAnimation(states.bayoStates.walk, true, 1f);
+            }
+            else
+            {
+                if (isMama) SetAnimation(states.mamaStates.mangoWalk, true, 1f);
+                else if (!isMama) SetAnimation(states.bayoStates.mangoWalk, true, 1f);
+            }
         }
+        /*else if(state == BayoStates.mangoWalk)
+        {
+            if (isMama) SetAnimation(states.mamaStates.mangoWalk, true, 1f);
+            else if (!isMama) SetAnimation(states.bayoStates.mangoWalk, true, 1f);
+        }*/
         else if (state == BayoStates.jump)
         {
             if (isMama) SetAnimation(states.mamaStates.jump, false, 1f);
@@ -173,18 +207,23 @@ public class PlayerAnimations : MonoBehaviour
         }
         else if (state == BayoStates.pickUp)
         {
-            if(isMama) SetAnimation(states.mamaStates.pickUp, false, 2f);
-            else if(!isMama) SetAnimation(states.bayoStates.pickUp, false, 2f);
+            if (isMama) SetAnimation(states.mamaStates.pickUp, false, 2f);
+            else if (!isMama) SetAnimation(states.bayoStates.pickUp, false, 2f);
         }
         else if (state == BayoStates.pushWalk)
         {
             if (isMama) SetAnimation(states.mamaStates.pushWalk, true, 1.5f);
             else if (!isMama) SetAnimation(states.bayoStates.pushWalk, true, 1.5f);
         }
-        else if(state == BayoStates.death)
+        else if (state == BayoStates.death)
         {
             if (isMama) SetAnimation(states.mamaStates.death, false, 1f);
             else if (!isMama) SetAnimation(states.bayoStates.death, false, 1f);
+        }
+        else if(state == BayoStates.tongue)
+        {
+            if (isMama) SetAnimation(states.mamaStates.tongue, false, 1f);
+            else if (!isMama) SetAnimation(states.bayoStates.tongue, false, 1f);
         }
         currentState = state;
     }
@@ -213,5 +252,5 @@ public class AnimationStates
 [System.Serializable]
 public class PlayerStates
 {
-    public AnimationReferenceAsset idle, walk, pushWalk, jump, pickUp, climb, ball, death;
+    public AnimationReferenceAsset idle, mangoIdle, walk, mangoWalk, pushWalk, jump, pickUp, climb, tongue, ball, death;
 }

@@ -13,26 +13,35 @@ public class PlayerAudio : MonoBehaviour
         PlayRandomClip.PlayClip(sources.footsteps, newClip, true, 0.8f, 1.2f);
     }
 
-    public void PlayJump()
+    public void PlayJump(float prob)
     {
+        float rand = Random.Range(0f, 100f);
+        if (prob < rand) return;
         AudioClip newClip = clips.jump[Random.Range(0, clips.jump.Count)];
         PlayRandomClip.PlayClip(sources.jump, newClip);
     }
 
-    public void PlayGrab()
+    public void PlayGrab(float prob)
     {
+        float rand = Random.Range(0f, 100f);
+        if (prob < rand) return;
         AudioClip newClip = clips.grab[Random.Range(0, clips.grab.Count)];
         PlayRandomClip.PlayClip(sources.grab, newClip);
     }
 
-    public void PlayClimb()
+    public void PlayClimb(float prob)
     {
+        float rand = Random.Range(0f, 100f);
+        if (prob < rand) return;
+        Debug.Log("Test");
         AudioClip newClip = clips.climb[Random.Range(0, clips.climb.Count)];
         PlayRandomClip.PlayClip(sources.climb, newClip);
     }
 
-    public void PlayTongue()
+    public void PlayTongue(float prob)
     {
+        float rand = Random.Range(0f, 100f);
+        if (prob < rand) return;
         AudioClip newClip = clips.tongue[Random.Range(0, clips.tongue.Count)];
         PlayRandomClip.PlayClip(sources.tongue, newClip);
     }

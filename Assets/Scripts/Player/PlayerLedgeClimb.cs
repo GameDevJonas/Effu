@@ -11,10 +11,13 @@ public class PlayerLedgeClimb : MonoBehaviour
     private Vector3 endPos;
 
     [SerializeField] private float climbTime = .5f;
-    public bool canClimb, isClimbing;
+    public bool canClimb, isClimbing, inRange;
     [SerializeField] private BoxCollider2D boxCol;
 
     private PlayerAudio pa;
+    [Range(0, 100)]
+    [SerializeField] private float probability;
+
 
     private void Awake()
     {
@@ -23,6 +26,7 @@ public class PlayerLedgeClimb : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         jump = GetComponent<PlayerJump>();
         pa = GetComponent<PlayerAudio>();
+        
     }
     private void Start()
     {
@@ -51,7 +55,7 @@ public class PlayerLedgeClimb : MonoBehaviour
         endPos = endP;
         boxCol.enabled = false;
         isClimbing = true;
-        pa.PlayClimb();
+        pa.PlayClimb(probability);
     }
 
     void Climbing()

@@ -10,6 +10,8 @@ public class PlayerGrab : MonoBehaviour
     public bool isGrabbing, doAnim;
     public Grabbable grabObj;
     private PlayerAudio pa;
+    [Range(0, 100)]
+    [SerializeField] private float probability;
 
     private void Awake()
     {
@@ -30,8 +32,8 @@ public class PlayerGrab : MonoBehaviour
         if (grabObj != null)
         {
             if(!isGrabbing) inputs.DisableEnableGrab(false);
-            pa.PlayGrab();
             grabObj.Grab();
+            pa.PlayGrab(probability);
         }
     }
 

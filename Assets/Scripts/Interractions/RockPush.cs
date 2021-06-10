@@ -11,11 +11,13 @@ public class RockPush : MonoBehaviour
     [SerializeField] private ParticleSystem leftSystem, rightSystem;
     [SerializeField] private PlayerMovement movement;
     private Animator anim;
-    private bool leftPush, rightPush;
+    private PlayerLedgeClimb player;
+    public bool leftPush, rightPush;
 
     private void Awake()
     {
         movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        player = GameObject.Find("Player").GetComponent<PlayerLedgeClimb>();
         anim = GetComponent<Animator>();
     }
 
