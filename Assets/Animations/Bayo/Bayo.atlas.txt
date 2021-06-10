@@ -1,0 +1,115 @@
+
+Bayo.png
+size: 1930,1628
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm1
+  rotate: false
+  xy: 2, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+Arm1push
+  rotate: false
+  xy: 966, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+Ball
+  rotate: false
+  xy: 2, 546
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Bayo2.png
+size: 1930,1628
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm2
+  rotate: false
+  xy: 2, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 966, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+EyeClosed2
+  rotate: false
+  xy: 2, 546
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Bayo3.png
+size: 1510,1510
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+EyeBlink
+  rotate: false
+  xy: 2, 966
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+EyeClosed
+  rotate: true
+  xy: 966, 546
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+EyeOpen
+  rotate: true
+  xy: 2, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+Leg1
+  rotate: false
+  xy: 546, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+
+Bayo4.png
+size: 1634,966
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Leg2
+  rotate: true
+  xy: 2, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+MouthClosed
+  rotate: true
+  xy: 546, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
+MouthOpen
+  rotate: true
+  xy: 1090, 2
+  size: 962, 542
+  orig: 962, 542
+  offset: 0, 0
+  index: -1
