@@ -15,7 +15,7 @@ public class GrappableEvent : Grapplable
     private void Awake()
     {
         cutsceneInfo.cutsceneCam = GameObject.FindGameObjectWithTag("CutsceneCam").GetComponent<CinemachineVirtualCamera>();
-        cutsceneInfo.player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputs>();
+        if (cutsceneInfo.player == null) cutsceneInfo.player = GameObject.Find("Player").GetComponent<PlayerInputs>();
     }
     private void Start()
     {
@@ -80,7 +80,7 @@ public class GrappableEvent : Grapplable
         cutsceneInfo.breakLog = GetComponent<Rigidbody2D>();
         cutsceneInfo.breakLog.bodyType = RigidbodyType2D.Dynamic;
         cutsceneInfo.breakLog.AddForce(transform.up * cutsceneInfo.breakLogForce);
-        foreach(Rigidbody2D rock in cutsceneInfo.rocks)
+        foreach (Rigidbody2D rock in cutsceneInfo.rocks)
         {
             rock.bodyType = RigidbodyType2D.Dynamic;
         }
@@ -105,7 +105,7 @@ public class LogCutsceneInfo
 {
     [Header("Common")]
     [HideInInspector] public CinemachineVirtualCamera cutsceneCam;
-    [HideInInspector] public PlayerInputs player;
+    public PlayerInputs player;
 
     [Header("Log")]
     public GameObject sideWalls;

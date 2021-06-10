@@ -81,7 +81,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: ac6c3c55120b40641bf93835a3ef9bed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,7 +104,7 @@ LineRenderer:
   m_SortingOrder: 2
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 3.27, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -152,8 +152,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0.3066038, b: 0.3066038, a: 1}
+      key1: {r: 1, g: 0.3443396, b: 0.3443396, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -284,7 +284,14 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d029010a8bb2fbd4eb108234e1d0e17c, type: 2}
+  - {fileID: 2100000, guid: 497d0ba5d7ffcc64395ee09b4115b6aa, type: 2}
+  - {fileID: 2100000, guid: e56e26659f41579429d88a4ac4de1262, type: 2}
+  - {fileID: 2100000, guid: 497d0ba5d7ffcc64395ee09b4115b6aa, type: 2}
+  - {fileID: 2100000, guid: e56e26659f41579429d88a4ac4de1262, type: 2}
+  - {fileID: 2100000, guid: 497d0ba5d7ffcc64395ee09b4115b6aa, type: 2}
+  - {fileID: 2100000, guid: 0cd630b9f448c934d8dc4977d76554c2, type: 2}
+  - {fileID: 2100000, guid: ef739aab56f084348ae391c6862a4e1a, type: 2}
+  - {fileID: 2100000, guid: 0cd630b9f448c934d8dc4977d76554c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: dd1b8a70ce32bae4baf18158caee6698, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 72abff53a391b144882a19b233c77801, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -1278,7 +1285,7 @@ Transform:
   m_GameObject: {fileID: 8613541991132211909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 8613541991229263310}
   - {fileID: 2525558422352886890}
@@ -1365,17 +1372,17 @@ MonoBehaviour:
       climb: {fileID: 11400000, guid: 3641d814c2ab38847932f86a6485ea2f, type: 2}
       ball: {fileID: 11400000, guid: b49656c805a2b5240a4fa528372a757f, type: 2}
     bayoStates:
-      idle: {fileID: 11400000, guid: 1d828abb7737de242acee39dc497b3ce, type: 2}
-      walk: {fileID: 11400000, guid: 1ceea0351bfaa4b44a90e0ac5ed527cd, type: 2}
-      pushWalk: {fileID: 11400000, guid: 7df14bc75b37bbf4ab9ac368d4c88d84, type: 2}
-      jump: {fileID: 11400000, guid: 3de5324fd2f50f84fa3aa66523eb9c6d, type: 2}
-      pickUp: {fileID: 11400000, guid: 20898c1a519e66a429ea0f65307dd11f, type: 2}
-      climb: {fileID: 11400000, guid: 8485f2f839d39c64ab2d221c01991e62, type: 2}
-      ball: {fileID: 11400000, guid: 9a35163766b9377469a3e38091dff291, type: 2}
+      idle: {fileID: 11400000, guid: 524049a98314b0b4695ff2dc39ffc3c0, type: 2}
+      walk: {fileID: 11400000, guid: d5ea1ce38fb422f44b3612fb87a7d4df, type: 2}
+      pushWalk: {fileID: 11400000, guid: 6771f21e2c55b214fa5046c7fb13c3bf, type: 2}
+      jump: {fileID: 11400000, guid: 54659983001eb8948bb790a3deaef20d, type: 2}
+      pickUp: {fileID: 11400000, guid: b4211765da052fd4da7d992c77ebe8b9, type: 2}
+      climb: {fileID: 11400000, guid: f5ee39ea216e7144d817b5a1b61d2408, type: 2}
+      ball: {fileID: 11400000, guid: f9499675698c92843b50cf61d2164d3d, type: 2}
     mama: {fileID: 11400000, guid: dd1b8a70ce32bae4baf18158caee6698, type: 2}
-    bayo: {fileID: 11400000, guid: 6a4395467a6e3214cb6c94a6dda0996b, type: 2}
+    bayo: {fileID: 11400000, guid: 72abff53a391b144882a19b233c77801, type: 2}
   currentAnimation: 
-  isMama: 1
+  isMama: 0
   currentState: 0
   raycastDistance: 1
   playGrab: 0

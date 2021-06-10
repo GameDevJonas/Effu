@@ -9,13 +9,13 @@ public class RockPush : MonoBehaviour
     [SerializeField] private bool showRange;
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private ParticleSystem leftSystem, rightSystem;
-    private PlayerMovement movement;
+    [SerializeField] private PlayerMovement movement;
     private Animator anim;
     private bool leftPush, rightPush;
 
     private void Awake()
     {
-        movement = FindObjectOfType<PlayerMovement>();
+        movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
     }
 
@@ -34,9 +34,9 @@ public class RockPush : MonoBehaviour
         anim.SetBool("RightPush", rightPush);
 
         if (leftPush && !leftSystem.isPlaying) leftSystem.Play();
-        else if(!leftPush) leftSystem.Stop();
+        else if (!leftPush) leftSystem.Stop();
         if (rightPush && !rightSystem.isPlaying) rightSystem.Play();
-        else if(!rightPush) rightSystem.Stop();
+        else if (!rightPush) rightSystem.Stop();
     }
 
     private bool CheckPush(Transform point, int dirToPush)

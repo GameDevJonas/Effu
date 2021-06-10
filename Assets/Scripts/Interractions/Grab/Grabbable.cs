@@ -9,7 +9,7 @@ public class Grabbable : MonoBehaviour
 
     public virtual void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("Player");
     }
 
     public virtual void Grab()

@@ -31,7 +31,7 @@ public class Grapplable : MonoBehaviour
 
     public virtual void EndGrapple()
     {
-        FindObjectOfType<PlayerTongue>().StopGrapple();
+        GameObject.Find("Player").GetComponent<PlayerTongue>().StopGrapple();
         if(rb)
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
