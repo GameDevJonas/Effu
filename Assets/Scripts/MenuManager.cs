@@ -41,7 +41,7 @@ public class MenuManager : MainMenuManager
     public void LoadNextLevel()
     {
         levelFader.SetTrigger("FadeOut");
-        Invoke("NextLevel", 1f);
+        Invoke("NextLevel", 2f);
     }
 
     private void NextLevel()

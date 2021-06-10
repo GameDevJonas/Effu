@@ -1358,20 +1358,28 @@ MonoBehaviour:
   states:
     mamaStates:
       idle: {fileID: 11400000, guid: 31baa2f8608a2484e8ff370a0db2904d, type: 2}
+      mangoIdle: {fileID: 11400000, guid: 280675f0e8e7018448bcf43d10a070df, type: 2}
       walk: {fileID: 11400000, guid: 76a7b21bf9223f549af3baf0b2d9348c, type: 2}
+      mangoWalk: {fileID: 11400000, guid: 293dba77b2632e04c8de868499d2ee0c, type: 2}
       pushWalk: {fileID: 11400000, guid: d23678f4d98dc4041abcb1a34ffd61f8, type: 2}
       jump: {fileID: 11400000, guid: 0a5b81bf2b0b58a4cbbf79f45edbf84c, type: 2}
       pickUp: {fileID: 11400000, guid: d23678f4d98dc4041abcb1a34ffd61f8, type: 2}
       climb: {fileID: 11400000, guid: 3094ca5e4846aa643a948c330e6301cf, type: 2}
-      ball: {fileID: 11400000, guid: b49656c805a2b5240a4fa528372a757f, type: 2}
+      tongue: {fileID: 11400000, guid: f77762faf8de9ff44bf6946b2113e4a5, type: 2}
+      ball: {fileID: 0}
+      death: {fileID: 11400000, guid: 6a57ca01465ea0848a7f4e98cf9d11fe, type: 2}
     bayoStates:
       idle: {fileID: 11400000, guid: 524049a98314b0b4695ff2dc39ffc3c0, type: 2}
+      mangoIdle: {fileID: 11400000, guid: f18bbb26c1cda764897bc39eec9bdc5f, type: 2}
       walk: {fileID: 11400000, guid: d5ea1ce38fb422f44b3612fb87a7d4df, type: 2}
+      mangoWalk: {fileID: 11400000, guid: 53cec2694bc6fc946b2e5122f7d9f356, type: 2}
       pushWalk: {fileID: 11400000, guid: 6771f21e2c55b214fa5046c7fb13c3bf, type: 2}
       jump: {fileID: 11400000, guid: 54659983001eb8948bb790a3deaef20d, type: 2}
       pickUp: {fileID: 11400000, guid: b4211765da052fd4da7d992c77ebe8b9, type: 2}
       climb: {fileID: 11400000, guid: f5ee39ea216e7144d817b5a1b61d2408, type: 2}
+      tongue: {fileID: 11400000, guid: 865a1aac8adcd1244a3bbe56b5438864, type: 2}
       ball: {fileID: 11400000, guid: f9499675698c92843b50cf61d2164d3d, type: 2}
+      death: {fileID: 11400000, guid: 00a2a9c802228e746800575d96d6095b, type: 2}
     mama: {fileID: 11400000, guid: dd1b8a70ce32bae4baf18158caee6698, type: 2}
     bayo: {fileID: 11400000, guid: 72abff53a391b144882a19b233c77801, type: 2}
   currentAnimation: 
@@ -1380,6 +1388,7 @@ MonoBehaviour:
   raycastDistance: 1
   playGrab: 0
   pivot: {fileID: 8613541991229263310}
+  mamaDeath: 0
 --- !u!114 &1789633608709483188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,28 +1411,28 @@ MonoBehaviour:
     footsteps:
     - {fileID: 8300000, guid: e885484e1bc99fb47a0ac3f6bfa586b1, type: 3}
     jump:
-    - {fileID: 8300000, guid: 4cabef93e2f67474dad1d5c5baa3a07a, type: 3}
-    - {fileID: 8300000, guid: e01a2e7cac24b3c41942cd653ebd92fc, type: 3}
-    - {fileID: 8300000, guid: 0d164bc13a79f4849a9fa9e3977cb2c8, type: 3}
-    - {fileID: 8300000, guid: 380928c797376b140a4f5f8937427273, type: 3}
-    - {fileID: 8300000, guid: 6c5af5f8fab069947a995c48516a2676, type: 3}
+    - {fileID: 8300000, guid: c4b581c7cea480840898f9a94b94029c, type: 3}
+    - {fileID: 8300000, guid: 1a160966f32f2d1448cc9a15af2b5521, type: 3}
+    - {fileID: 8300000, guid: f810675d44db145498301373316a5f1a, type: 3}
     grab:
-    - {fileID: 8300000, guid: 4ae357e6ee2be93448a77cc3c5b4c810, type: 3}
-    - {fileID: 8300000, guid: b6aca0df196a4664c82c105a134a1aff, type: 3}
-    - {fileID: 8300000, guid: b473fd2814347304895c3b17b66b474f, type: 3}
-    - {fileID: 8300000, guid: 39b017cae9b8cf44ebf5502ee4517f07, type: 3}
-    - {fileID: 8300000, guid: 304ddf104788ac2468f7a7bfa20fb58e, type: 3}
+    - {fileID: 8300000, guid: 705f7d3932d5d93468f9cec819e67e11, type: 3}
+    - {fileID: 8300000, guid: 2c276f511397bd446a2946257de58729, type: 3}
+    - {fileID: 8300000, guid: 73c2f6a8531f05c489a5693bc498401d, type: 3}
+    - {fileID: 8300000, guid: 484b904f14786f546a81cec0db4a0b69, type: 3}
     climb:
-    - {fileID: 8300000, guid: ca7c02ffafe8224428f432a8e666df67, type: 3}
-    - {fileID: 8300000, guid: 6acbd09ab577b064da06431a00eee154, type: 3}
-    - {fileID: 8300000, guid: 0022ec648820ce74d94d439abc446026, type: 3}
-    - {fileID: 8300000, guid: 28b689c89b1a49d44824fcab7343193e, type: 3}
-    - {fileID: 8300000, guid: 1399321c1178db141af52628699879c6, type: 3}
+    - {fileID: 8300000, guid: 53f055f975487e84fb3ed3e1b0fa804c, type: 3}
+    - {fileID: 8300000, guid: 31635038635e3214f8a32f52d64db54a, type: 3}
+    - {fileID: 8300000, guid: 3c5bfa826d0362a498e00d44201d76e6, type: 3}
+    - {fileID: 8300000, guid: a14b013e7354be74e8abfb2879eff350, type: 3}
+    - {fileID: 8300000, guid: 21cd720780b77ad459a43d30a080e184, type: 3}
     tongue:
-    - {fileID: 8300000, guid: d8fbd6fbd51d56b469881120d7793cf4, type: 3}
-    - {fileID: 8300000, guid: 822c075fd32d11542a9f9d59b5c0245a, type: 3}
-    - {fileID: 8300000, guid: db769cd9de0fa254ab81340769501192, type: 3}
-    - {fileID: 8300000, guid: 4af2c401af3f72842aad559e02c5f021, type: 3}
+    - {fileID: 8300000, guid: 20d0dd7a2eb2aea4e89856bcbde8abfe, type: 3}
+    - {fileID: 8300000, guid: 3c2f3fb88d5fac0438b5facb0e13b3a2, type: 3}
+    - {fileID: 8300000, guid: 17aa847ad4014a64684be564d5dfdf20, type: 3}
+    - {fileID: 8300000, guid: 2e58752c53af6894c9c1f963064057d8, type: 3}
+    - {fileID: 8300000, guid: 289f2da85469136439890b8753f30a43, type: 3}
+    - {fileID: 8300000, guid: 8133d4ba9f181cd49b492fe81a4eb565, type: 3}
+    - {fileID: 8300000, guid: 49609b83b5814c14fb3dd2afbfab8ce6, type: 3}
 --- !u!114 &8613541991132211914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,6 +1475,9 @@ MonoBehaviour:
   jumpHeight: 180
   fallMultiplier: 2
   lowJumpMultiplier: 5
+  probability: 54
+  minDistanceToLedge: 2
+  showMinDistance: 0
 --- !u!114 &8240671567431009956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,6 +1494,7 @@ MonoBehaviour:
   isGrabbing: 0
   doAnim: 0
   grabObj: {fileID: 0}
+  probability: 50
 --- !u!114 &2042407653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,7 +1510,9 @@ MonoBehaviour:
   climbTime: 2
   canClimb: 0
   isClimbing: 0
+  inRange: 0
   boxCol: {fileID: 915192984}
+  probability: 100
 --- !u!114 &2042407661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,7 +1520,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8613541991132211909}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3acbea15aa7dac4ca19446a0b086255, type: 3}
   m_Name: 
@@ -1526,13 +1541,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085a418babfc703469962b1242431d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGrapple: 0
+  performed: 0
+  inRange: 0
+  tongueAnim: 0
   marker: {fileID: 2623774368113647170}
   target: {fileID: 0}
-  maxDistance: 7
+  maxDistance: 6
   tongueSpeed: 10
   line: {fileID: 564378967}
   lineEnd: {fileID: 360753512}
   showRange: 0
+  probability: 50
 --- !u!1 &8613541991229263308
 GameObject:
   m_ObjectHideFlags: 0
