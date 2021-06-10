@@ -135,7 +135,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         //Write next sentence
-        Debug.Log(names.Peek());
+        //Debug.Log(names.Peek());
         nameText.text = names.Dequeue() + ":";
         currentSentence = sentences.Dequeue();
         voiceSource.clip = voiceLines.Dequeue();

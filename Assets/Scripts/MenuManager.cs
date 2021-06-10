@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MainMenuManager
 {
     [SerializeField] private GameObject pauseObj;
     public bool isPaused;
+    [SerializeField] private Animator levelFader;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,5 +36,16 @@ public class MenuManager : MainMenuManager
         pauseObj.SetActive(!inMenu);
         howToPlayMenu.SetActive(inMenu);
         Time.timeScale = 0;
+    }
+
+    public void LoadNextLevel()
+    {
+        levelFader.SetTrigger("FadeOut");
+        Invoke("NextLevel", 1f);
+    }
+
+    private void NextLevel()
+    {
+        LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

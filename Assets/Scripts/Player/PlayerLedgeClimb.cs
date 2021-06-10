@@ -72,7 +72,7 @@ public class PlayerLedgeClimb : MonoBehaviour
             boxCol.enabled = true;
             rb.bodyType = RigidbodyType2D.Dynamic;
             inputs.DisableEnableClimb(true);
-            Debug.Log("Test");
+            //Debug.Log("Test");
         }
     }
 }
