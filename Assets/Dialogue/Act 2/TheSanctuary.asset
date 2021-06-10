@@ -15,4 +15,4 @@ MonoBehaviour:
   dialogue:
   - name: Bayo
     sentence: I'll find the sanctuary mama, for both of us!
-    voiceLine: {fileID: 8300000, guid: 71ea976d525fd044c8dcd4d5e6eca200, type: 3}
+    voiceLine: {fileID: 8300000, guid: 624cb89e9b54c7e4d96926fea497b8ef, type: 3}
