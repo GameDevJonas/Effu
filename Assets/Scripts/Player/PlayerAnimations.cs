@@ -15,7 +15,10 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private BayoStates currentState;
 
     [SerializeField] private float raycastDistance;
+    [SerializeField] private float rotationSpeed;
     //private SpriteRenderer spriteRenderer;
+
+    [SerializeField] private LayerMask whatIsGroundRotation;
 
     private PlayerMovement movement;
     private PlayerJump jump;
@@ -68,12 +71,13 @@ public class PlayerAnimations : MonoBehaviour
         }
 
         //Change rotation of pivot of normal from ground
-        /*if (jump.IsGrounded() && !ball.isBall && !climb.isClimbing)
+        if (jump.IsGrounded() && !ball.isBall && !climb.isClimbing)
         {
             Debug.DrawRay(grab.grabPoint.position, Vector2.down * raycastDistance, Color.red);
-            pivot.rotation = GetNormalFromGround();
+            float step = rotationSpeed * Time.deltaTime;
+            pivot.rotation = Quaternion.RotateTowards(pivot.rotation, GetNormalFromGround(), step);
         }
-        else if (!ball.isBall) pivot.rotation = Quaternion.Euler(Vector3.zero);*/
+        else if (!ball.isBall) pivot.rotation = Quaternion.Euler(Vector3.zero);
 
         //Set walking animation
         if (movement.movementInput != 0 && !ball.isBall && !climb.isClimbing && !jump.inJump && !movement.isPushing && !playGrab) { SetCharacterState(BayoStates.walking); playGrab = false; }
@@ -129,7 +133,7 @@ public class PlayerAnimations : MonoBehaviour
 
     Quaternion GetNormalFromGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(grab.grabPoint.position, Vector2.down, raycastDistance, jump.ground);
+        RaycastHit2D hit = Physics2D.Raycast(grab.grabPoint.position, Vector2.down, raycastDistance, whatIsGroundRotation);
         if (hit)
         {
             Quaternion newRot = Quaternion.FromToRotation(Vector2.up, hit.normal);
