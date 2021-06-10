@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogue:
   - name: Bayo
     sentence: "That ledge looks steep.\r"
-    voiceLine: {fileID: 8300000, guid: e09a84bfa497c064583e79001de20de1, type: 3}
+    voiceLine: {fileID: 8300000, guid: 70eaa7d8fab14bc449c6c4c48632df87, type: 3}
   - name: Mama
     sentence: Hold on Bayo we have to climb over.
-    voiceLine: {fileID: 8300000, guid: 31408a4241d7ea94e8069b4805c6c5d1, type: 3}
+    voiceLine: {fileID: 8300000, guid: 6449ca59c3fb7db4e8f56e2401eb6f1a, type: 3}

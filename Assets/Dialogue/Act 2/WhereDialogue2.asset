@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f801988fb8ca52d4bbf0086aa0a06f9d, type: 3}
   m_Name: WhereDialogue2
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - name: Bayo
+    sentence: 
+    voiceLine: {fileID: 0}
+  - name: 
+    sentence: 
+    voiceLine: {fileID: 0}
+  - name: 
+    sentence: 
+    voiceLine: {fileID: 0}
+  - name: 
+    sentence: 
+    voiceLine: {fileID: 0}

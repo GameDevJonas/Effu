@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f801988fb8ca52d4bbf0086aa0a06f9d, type: 3}
   m_Name: TooDeep
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - name: Bayo
+    sentence: It's too deep!
+    voiceLine: {fileID: 8300000, guid: 2331c9d7d2ac67a4ebfac18debde4be1, type: 3}
